@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from
+  '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FlexLayoutModule} from '@angular/flex-layout'
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -81,6 +84,11 @@ import { GaugeChartModule } from 'angular-gauge-chart'
 import { EsgGaugeComponent } from './esg-gauge/esg-gauge.component';
 import { CompanyEsgInfoComponent } from './company-esg-info/company-esg-info.component';
 import { CompareEsgInfoComponent } from './compare-esg-info/compare-esg-info.component';
+import { CompanyEsgGaugeDetailsComponent } from './company-esg-info/company-esg-gauge-details/company-esg-gauge-details.component';
+import { CompareEsgGaugeDetailsComponent } from './compare-esg-info/compare-esg-gauge-details/compare-esg-gauge-details.component';
+import { CompanyScoreDetailsComponent } from './company-esg-info/company-score-details/company-score-details.component';
+import { CompareScoreDetailsComponent } from './compare-esg-info/compare-score-details/compare-score-details.component';
+import { GlobalCompanySearchComponent } from './global-company-search/global-company-search.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +99,12 @@ import { CompareEsgInfoComponent } from './compare-esg-info/compare-esg-info.com
     FetchDataComponent,
     EsgGaugeComponent,
     CompanyEsgInfoComponent,
-    CompareEsgInfoComponent
+    CompareEsgInfoComponent,
+    CompanyEsgGaugeDetailsComponent,
+    CompareEsgGaugeDetailsComponent,
+    CompanyScoreDetailsComponent,
+    CompareScoreDetailsComponent,
+    GlobalCompanySearchComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -103,7 +116,9 @@ import { CompareEsgInfoComponent } from './compare-esg-info/compare-esg-info.com
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    ]),
+    FlexLayoutModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

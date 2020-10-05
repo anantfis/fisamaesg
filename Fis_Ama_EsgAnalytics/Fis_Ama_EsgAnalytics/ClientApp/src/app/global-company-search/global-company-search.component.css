@@ -1,0 +1,12 @@
+.box-container{
+  min-width: 150px;
+  width: 100%;
+}
+
+.search-field-full-width {
+  width: 50%;
+}
+
+.global-search-container {
+  padding:0px;
+}
