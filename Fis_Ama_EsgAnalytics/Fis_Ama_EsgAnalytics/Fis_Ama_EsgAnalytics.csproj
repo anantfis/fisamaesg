@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -21,6 +21,28 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\models\company.ts" />
+    <None Remove="ClientApp\src\app\models\environmentalScore.ts" />
+    <None Remove="ClientApp\src\app\models\esgInputData.ts" />
+    <None Remove="ClientApp\src\app\models\goalBasedScore.ts" />
+    <None Remove="ClientApp\src\app\models\governanceScore.ts" />
+    <None Remove="ClientApp\src\app\models\provider.ts" />
+    <None Remove="ClientApp\src\app\models\sector.ts" />
+    <None Remove="ClientApp\src\app\models\socialScore.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\company.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\environmentalScore.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\esgInputData.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\goalBasedScore.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\governanceScore.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\provider.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\sector.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\socialScore.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
