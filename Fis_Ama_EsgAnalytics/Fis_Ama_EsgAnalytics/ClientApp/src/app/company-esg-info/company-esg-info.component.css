@@ -14,6 +14,7 @@
 
 .company-esg-info{
   padding:0px;
+  background-color:beige;
 }
   .company-esg-info mat-card-title, .company-esg-info h4 {
       margin:0px;
