@@ -6,7 +6,7 @@
   background-color: #ffffff;
   border: 1px solid lightgrey;
   padding:0px;
-  height: 500px;
+  min-height: 500px;
 }
 .company-header {
   background-color:cadetblue;

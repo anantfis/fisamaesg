@@ -1,11 +1,14 @@
 .compare-esg-score-content {
   box-shadow: none;
 }
+  .compare-esg-score-content td {
+      padding:12px;
+  }
 
-th {
-  padding: 20px;
-  margin: 20px;
-}
+  th {
+    padding: 20px;
+    margin: 20px;
+  }
 
 td {
   padding: 5px;
