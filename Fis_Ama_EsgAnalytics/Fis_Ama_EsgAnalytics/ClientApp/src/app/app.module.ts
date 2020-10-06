@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from
   '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule} from '@angular/flex-layout'
@@ -111,6 +111,7 @@ import { GlobalCompanySearchComponent } from './global-company-search/global-com
     modules,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     GaugeChartModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

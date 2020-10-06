@@ -1,6 +1,6 @@
 <mat-card fxLayout fxLayoutAlign="center center" fxLayoutGap="20px" class="esg-gauge-content">
-  <app-esg-gauge></app-esg-gauge>
-  <app-esg-gauge></app-esg-gauge>
-  <app-esg-gauge></app-esg-gauge>
-  <app-esg-gauge></app-esg-gauge>
+  <app-esg-gauge [gaugeParams]="netScoreGauge"></app-esg-gauge>
+  <app-esg-gauge [gaugeParams]="e_ScoreGauge"></app-esg-gauge>
+  <app-esg-gauge [gaugeParams]="s_ScoreGauge"></app-esg-gauge>
+  <app-esg-gauge [gaugeParams]="g_ScoreGauge"></app-esg-gauge>
 </mat-card>

@@ -27,6 +27,7 @@
     <None Remove="ClientApp\src\app\models\company.ts" />
     <None Remove="ClientApp\src\app\models\environmentalScore.ts" />
     <None Remove="ClientApp\src\app\models\esgInputData.ts" />
+    <None Remove="ClientApp\src\app\models\gaugeParameters.ts" />
     <None Remove="ClientApp\src\app\models\goalBasedScore.ts" />
     <None Remove="ClientApp\src\app\models\governanceScore.ts" />
     <None Remove="ClientApp\src\app\models\provider.ts" />
@@ -38,6 +39,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\company.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\environmentalScore.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\esgInputData.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\gaugeParameters.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\goalBasedScore.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\governanceScore.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\provider.ts" />

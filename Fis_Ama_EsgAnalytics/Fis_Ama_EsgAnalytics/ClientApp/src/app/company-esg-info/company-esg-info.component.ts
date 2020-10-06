@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { company } from '../models/company';
+import { EsgDataService } from '../service/esg-data.service';
 
 @Component({
   selector: 'app-company-esg-info',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyEsgInfoComponent implements OnInit {
 
-  constructor() { }
+  @Input() companySelected: company;
 
-  ngOnInit() {
+  constructor(private esgDataService: EsgDataService) {
+    //console.log('2. app-company-esg-info :' + this.companySelected.companyName);
   }
 
+  ngOnInit() {
+    this.companySelected = this.esgDataService.getAllCompanies()[0];
+    console.log('2. app-company-esg-info :' + this.companySelected.companyName)
+  }
 }

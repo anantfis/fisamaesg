@@ -2,7 +2,7 @@ export class environmentalScore {
   energyAndClimateChange: number;
   environmentPolicyAndReporting: number;
   resourceManagement: number;
-  reenhouseGases: number;
+  greenhouseGases: number;
   waterResources: number;
   landUsage: number;
   wasteManagement: number;
