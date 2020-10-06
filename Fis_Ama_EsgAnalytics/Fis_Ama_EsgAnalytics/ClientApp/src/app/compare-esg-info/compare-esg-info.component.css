@@ -1,0 +1,28 @@
+.gauge-container {
+  background-color: #ffffff;
+  border: 1px solid lightgrey;
+}
+
+.score-container {
+  background-color: #ffffff;
+  border: 1px solid lightgrey;
+  padding: 0px;
+  height: 500px;
+}
+
+/*.company-header {
+  background-color: cadetblue;
+}*/
+
+.compare-esg-info {
+  padding: 0px;
+  background-color: beige;
+}
+
+  .compare-esg-info mat-card-title, .compare-esg-info h4 {
+    margin: 0px;
+  }
+
+  .compare-esg-info .mat-card-content {
+    padding: 14px;
+  }
