@@ -22,7 +22,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
   companyData: esgInputData;
   canvaswidth: number = 250;
   ngOnInit() {
-    this.companySelected = this.esgDataService.getAllCompanies()[0];
+    this.companySelected = this.esgDataService.getAllCompanies()[0]; // should come through @Input, remove hardcoding later
     console.log('3. app-company-esg-gauge-details :' + this.companySelected.companyName)
     this.companyInput = this.esgDataService.getAllCompanies().filter(x => x.companyId === this.companySelected.companyId)[0];
     this.companyData = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput.companyId)[0];
