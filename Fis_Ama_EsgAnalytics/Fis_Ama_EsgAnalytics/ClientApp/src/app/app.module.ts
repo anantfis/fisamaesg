@@ -115,17 +115,18 @@ import { GlobalCompanySearchComponent } from './global-company-search/global-com
     GaugeChartModule,
     RouterModule.forRoot([
       {
-        path: '', redirectTo:'globalSearch', pathMatch: 'full' 
+        path: 'home', component: HomeComponent,       
+      },
+      {
+        path: '', redirectTo: 'home', pathMatch: 'full' 
       },
       {
         path: 'globalSearch', component: GlobalCompanySearchComponent, children: [
           { path: '', redirectTo: 'companyEsgInfo/1', pathMatch: 'full' },
           { path: 'companyEsgInfo/:id', component: CompanyEsgInfoComponent },
-          { path: 'compareEsgInfo', component: CompareEsgInfoComponent }
+          { path: 'compareEsgInfo', component: CompareEsgInfoComponent }          
         ]
-      }
-      //{ path: 'counter', component: CounterComponent },
-      //{ path: 'fetch-data', component: FetchDataComponent },
+      }    
     ], { initialNavigation: 'enabled' }),
     FlexLayoutModule,
     BrowserAnimationsModule
