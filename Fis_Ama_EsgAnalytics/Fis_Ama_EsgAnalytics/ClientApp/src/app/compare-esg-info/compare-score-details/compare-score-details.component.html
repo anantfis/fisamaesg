@@ -8,169 +8,239 @@
     <mat-card>
       <span class="factor">Goals</span>
       <table>
-        <tr>
-          <th></th>
+        <tr>          
           <th>Goal 1</th>
         </tr>
-        <tr>
-          <th></th>
+        <tr>          
           <th>Goal 2</th>
         </tr>
-        <tr>
-          <th></th>
+        <tr>          
           <th>Goal 3</th>
         </tr>
-        <tr>
-          <th></th>
+        <tr>         
           <th>Goal 4</th>
         </tr>
-        <tr>
-          <th></th>
+        <tr>          
           <th>Goal 5</th>
         </tr>
-        <tr>
-          <th></th>
+        <tr>          
           <th>Goal 6</th>
         </tr>
-        <tr>
-          <th></th>
+        <tr>          
           <th>Goal 7</th>
         </tr>
-      </table>
-    </mat-card>
-
-    <mat-card>
-      <span class="factor">Lupin</span>
-      <table>
-        <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+        <tr>          
+          <th>Goal 8</th>
         </tr>
-        <tr>
-          <td><img src="assets/reddot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+        <tr>          
+          <th>Goal 9</th>
         </tr>
-        <tr>
-          <td><img src="assets/yellowdot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
+        <tr>          
+          <th>Goal 10</th>
         </tr>
-        <tr>
-          <td><img src="assets/reddot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+        <tr>          
+          <th>Goal 11</th>
         </tr>
-        <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
-        </tr>
-        <tr>
-          <td><img src="assets/yellowdot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
-        </tr>
-        <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
+        <tr>         
+          <th>Goal 12</th>
         </tr>
       </table>
     </mat-card>
 
     <mat-card>
-      <!--board: number;
-    transparencyAndReporting: number;
-    leadershipEthics: number;
-    structureAndOversights: number;
-    codeAndValues: number;
-    cyberrisksAndSystems: number;
-    generalFactors: number;-->
-      <span class="factor">Sun Pharma</span>
+      <span class="factor">{{companyData1.company.companyName}}</span>
       <table>
         <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal1)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal1)}}</td>
+          <td>{{companyData1.goalBasedScore.goal1}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/reddot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal2)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal2)}}</td>
+          <td>{{companyData1.goalBasedScore.goal2}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/yellowdot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal3)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal3)}}</td>
+          <td>{{companyData1.goalBasedScore.goal3}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/reddot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal4)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal4)}}</td>
+          <td>{{companyData1.goalBasedScore.goal4}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal5)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal5)}}</td>
+          <td>{{companyData1.goalBasedScore.goal5}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/yellowdot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal6)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal6)}}</td>
+          <td>{{companyData1.goalBasedScore.goal6}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal7)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal7)}}</td>
+          <td>{{companyData1.goalBasedScore.goal7}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal8)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal8)}}</td>
+          <td>{{companyData1.goalBasedScore.goal8}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal9)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal9)}}</td>
+          <td>{{companyData1.goalBasedScore.goal9}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal10)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal10)}}</td>
+          <td>{{companyData1.goalBasedScore.goal10}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal11)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal11)}}</td>
+          <td>{{companyData1.goalBasedScore.goal11}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData1.goalBasedScore.goal12)}}" /></td>
+          <td>{{pickRating(companyData1.goalBasedScore.goal12)}}</td>
+          <td>{{companyData1.goalBasedScore.goal12}}/100</td>
         </tr>
       </table>
     </mat-card>
+
     <mat-card>
-      <!--board: number;
-    transparencyAndReporting: number;
-    leadershipEthics: number;
-    structureAndOversights: number;
-    codeAndValues: number;
-    cyberrisksAndSystems: number;
-    generalFactors: number;-->
-      <span class="factor">Cipla</span>
+      <span class="factor">{{companyData2.company.companyName}}</span>
       <table>
         <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal1)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal1)}}</td>
+          <td>{{companyData2.goalBasedScore.goal1}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/reddot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal2)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal2)}}</td>
+          <td>{{companyData2.goalBasedScore.goal2}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/yellowdot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal3)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal3)}}</td>
+          <td>{{companyData2.goalBasedScore.goal3}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/reddot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal4)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal4)}}</td>
+          <td>{{companyData2.goalBasedScore.goal4}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Good</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal5)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal5)}}</td>
+          <td>{{companyData2.goalBasedScore.goal5}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/yellowdot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal6)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal6)}}</td>
+          <td>{{companyData2.goalBasedScore.goal6}}/100</td>
         </tr>
         <tr>
-          <td><img src="assets/greendot.png" /></td>
-          <td>Strong</td>
-          <td>56/100</td>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal7)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal7)}}</td>
+          <td>{{companyData2.goalBasedScore.goal7}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal8)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal8)}}</td>
+          <td>{{companyData2.goalBasedScore.goal8}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal9)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal9)}}</td>
+          <td>{{companyData2.goalBasedScore.goal9}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal10)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal10)}}</td>
+          <td>{{companyData2.goalBasedScore.goal10}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal11)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal11)}}</td>
+          <td>{{companyData2.goalBasedScore.goal11}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData2.goalBasedScore.goal12)}}" /></td>
+          <td>{{pickRating(companyData2.goalBasedScore.goal12)}}</td>
+          <td>{{companyData2.goalBasedScore.goal12}}/100</td>
+        </tr>
+      </table>
+    </mat-card>
+
+    <mat-card>
+      <span class="factor">{{companyData3.company.companyName}}</span>
+      <table>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal1)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal1)}}</td>
+          <td>{{companyData3.goalBasedScore.goal1}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal2)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal2)}}</td>
+          <td>{{companyData3.goalBasedScore.goal2}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal3)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal3)}}</td>
+          <td>{{companyData3.goalBasedScore.goal3}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal4)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal4)}}</td>
+          <td>{{companyData3.goalBasedScore.goal4}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal5)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal5)}}</td>
+          <td>{{companyData3.goalBasedScore.goal5}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal6)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal6)}}</td>
+          <td>{{companyData3.goalBasedScore.goal6}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal7)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal7)}}</td>
+          <td>{{companyData3.goalBasedScore.goal7}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal8)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal8)}}</td>
+          <td>{{companyData3.goalBasedScore.goal8}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal9)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal9)}}</td>
+          <td>{{companyData3.goalBasedScore.goal9}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal10)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal10)}}</td>
+          <td>{{companyData3.goalBasedScore.goal10}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal11)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal11)}}</td>
+          <td>{{companyData3.goalBasedScore.goal11}}/100</td>
+        </tr>
+        <tr>
+          <td><img src="{{pickColor(companyData3.goalBasedScore.goal12)}}" /></td>
+          <td>{{pickRating(companyData3.goalBasedScore.goal12)}}</td>
+          <td>{{companyData3.goalBasedScore.goal12}}/100</td>
         </tr>
       </table>
     </mat-card>

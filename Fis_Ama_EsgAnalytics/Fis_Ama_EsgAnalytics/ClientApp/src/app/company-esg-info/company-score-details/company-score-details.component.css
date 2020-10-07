@@ -12,6 +12,10 @@ td {
   margin: 10px;
 }
 
+img{
+  height:20px;
+}
+
 .factor{
   color:lightseagreen;
   font-weight:bold;

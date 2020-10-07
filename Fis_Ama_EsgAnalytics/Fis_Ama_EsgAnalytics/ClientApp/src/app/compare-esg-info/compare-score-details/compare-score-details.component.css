@@ -1,18 +1,22 @@
 .compare-esg-score-content {
   box-shadow: none;
 }
+
   .compare-esg-score-content td {
-      padding:12px;
+    padding: 12px;
   }
 
-  th {
-    padding: 20px;
-    margin: 20px;
-  }
+th {
+  padding: 12px;
+  margin: 10px;
+}
 
 td {
   padding: 5px;
   margin: 10px;
+}
+img {
+  height: 20px;
 }
 
 .factor {
