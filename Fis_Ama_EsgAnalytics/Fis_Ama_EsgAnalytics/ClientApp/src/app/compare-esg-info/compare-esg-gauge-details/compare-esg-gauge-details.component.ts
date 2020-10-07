@@ -22,6 +22,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
   companyData2: esgInputData;
   companyData3: esgInputData;
   canvaswidth: number = 275;
+  needleupdatespeed: number = 2000;
   ngOnInit() {
     // should come through @Input, remove hardcoding later
     this.companyInput1 = this.esgDataService.getAllCompanies()[0];//this.companiesSelected[0]
@@ -45,7 +46,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       options: {
         hasNeedle: true,
         needleColor: 'gray',
-        needleUpdateSpeed: 10,
+        needleUpdateSpeed: this.needleupdatespeed,
         arcColors: ['rgb(255, 84, 84)', 'rgb(239, 214, 19)', 'rgb(61, 204, 91)'],
         arcDelimiters: [35, 75],
         rangeLabel: ['0', '100'],
@@ -61,7 +62,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       options: {
         hasNeedle: true,
         needleColor: 'gray',
-        needleUpdateSpeed: 10,
+        needleUpdateSpeed: this.needleupdatespeed,
         arcColors: ['rgb(255, 84, 84)', 'rgb(239, 214, 19)', 'rgb(61, 204, 91)'],
         arcDelimiters: [35, 75],
         rangeLabel: ['0', '100'],
@@ -77,7 +78,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       options: {
         hasNeedle: true,
         needleColor: 'gray',
-        needleUpdateSpeed: 10,
+        needleUpdateSpeed: this.needleupdatespeed,
         arcColors: ['rgb(255, 84, 84)', 'rgb(239, 214, 19)', 'rgb(61, 204, 91)'],
         arcDelimiters: [35, 75],
         rangeLabel: ['0', '100'],

@@ -13,17 +13,13 @@ export class CompanyEsgInfoComponent implements OnInit {
   @Input() companySelected: company = <company>{};
   companyId: number;
 
-  constructor(private esgDataService: EsgDataService, private route: ActivatedRoute) {
-    //console.log('2. app-company-esg-info :' + this.companySelected.companyName);
+  constructor(private esgDataService: EsgDataService, private route: ActivatedRoute) {   
   }
 
   ngOnInit() {
     this.route.params.subscribe(() => {
       this.companyId = +this.route.snapshot.paramMap.get('id');
-      this.companySelected = this.esgDataService.getAllCompanies()[0];
-      console.log('2. app-company-esg-info :' + this.companySelected.companyName)
+      this.companySelected = this.esgDataService.getAllCompanies()[0];     
     });
-    //this.companySelected = this.esgDataService.getAllCompanies()[0];
-    //console.log('2. app-company-esg-info :' + this.companySelected.companyName)
   }
 }

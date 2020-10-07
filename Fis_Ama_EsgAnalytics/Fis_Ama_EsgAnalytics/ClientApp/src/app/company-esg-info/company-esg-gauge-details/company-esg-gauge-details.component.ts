@@ -21,9 +21,9 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
   companyInput: company;
   companyData: esgInputData;
   canvaswidth: number = 250;
+  needleupdatespeed: number = 2000;
   ngOnInit() {
     this.companySelected = this.esgDataService.getAllCompanies()[0]; // should come through @Input, remove hardcoding later
-    console.log('3. app-company-esg-gauge-details :' + this.companySelected.companyName)
     this.companyInput = this.esgDataService.getAllCompanies().filter(x => x.companyId === this.companySelected.companyId)[0];
     this.companyData = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput.companyId)[0];
     this.netScoreGauge = {
@@ -35,7 +35,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       options: {
         hasNeedle: true,
         needleColor: 'gray',
-        needleUpdateSpeed: 10,
+        needleUpdateSpeed: this.needleupdatespeed,
         arcColors: ['rgb(255, 84, 84)', 'rgb(239, 214, 19)', 'rgb(61, 204, 91)'],
         arcDelimiters: [35, 75],
         rangeLabel: ['0', '100'],
@@ -51,7 +51,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       options: {
         hasNeedle: true,
         needleColor: 'gray',
-        needleUpdateSpeed: 10,
+        needleUpdateSpeed: this.needleupdatespeed,
         arcColors: ['rgb(255, 84, 84)', 'rgb(239, 214, 19)', 'rgb(61, 204, 91)'],
         arcDelimiters: [35, 75],
         rangeLabel: ['0', '100'],
@@ -67,7 +67,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       options: {
         hasNeedle: true,
         needleColor: 'gray',
-        needleUpdateSpeed: 10,
+        needleUpdateSpeed: this.needleupdatespeed,
         arcColors: ['rgb(255, 84, 84)', 'rgb(239, 214, 19)', 'rgb(61, 204, 91)'],
         arcDelimiters: [35, 75],
         rangeLabel: ['0', '100'],
@@ -83,7 +83,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       options: {
         hasNeedle: true,
         needleColor: 'gray',
-        needleUpdateSpeed: 10,
+        needleUpdateSpeed: this.needleupdatespeed,
         arcColors: ['rgb(255, 84, 84)', 'rgb(239, 214, 19)', 'rgb(61, 204, 91)'],
         arcDelimiters: [35, 75],
         rangeLabel: ['0', '100'],

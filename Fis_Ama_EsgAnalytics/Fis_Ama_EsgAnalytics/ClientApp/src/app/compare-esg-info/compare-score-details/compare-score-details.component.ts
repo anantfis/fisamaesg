@@ -29,8 +29,6 @@ export class CompareScoreDetailsComponent implements OnInit {
     this.companyData2 = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput2.companyId)[0];
     this.companyData3 = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput3.companyId)[0];
 
-   //this.companyData3.company.companyName
-   // this.companyData3.goalBasedScore.goal1
   }
 
   pickColor(score: number): string {

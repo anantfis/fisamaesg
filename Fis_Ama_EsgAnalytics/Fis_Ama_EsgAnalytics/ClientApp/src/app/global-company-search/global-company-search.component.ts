@@ -27,8 +27,7 @@ export class GlobalCompanySearchComponent implements OnInit {
       );
   }
 
-  private _filter(value: string): company[] {
-    console.log('1 :' + value);
+  private _filter(value: string): company[] {   
     const filterValue = value.toLowerCase();
     return this.companies.filter(option => option.companyName.toLowerCase().includes(filterValue));
   }
