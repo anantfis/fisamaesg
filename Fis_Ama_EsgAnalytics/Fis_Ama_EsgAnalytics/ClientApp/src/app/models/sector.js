@@ -6,4 +6,10 @@ var sector = /** @class */ (function () {
     return sector;
 }());
 exports.sector = sector;
+var sectorGoalWeightage = /** @class */ (function () {
+    function sectorGoalWeightage() {
+    }
+    return sectorGoalWeightage;
+}());
+exports.sectorGoalWeightage = sectorGoalWeightage;
 //# sourceMappingURL=sector.js.map
