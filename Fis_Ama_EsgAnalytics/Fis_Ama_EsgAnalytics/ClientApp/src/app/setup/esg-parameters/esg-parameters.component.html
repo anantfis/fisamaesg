@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-title>ESG Parameter List</mat-card-title>
+  <mat-card-subtitle>Mapped to SDG Goal/Category/Description</mat-card-subtitle>
+  <mat-card-content fxLayout fxLayoutAlign="center" fxLayoutGap="20px">    
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let param of allParameters">
+          <td>{{param.esgParameterId}}</td>
+          <td>{{param.esgParameterName}}</td>
+          <td>{{param.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
+          <td>{{param.sdg_Goal_Description.sdg_Goal.esg_Category.esgCategoryName}}</td>
+          <td>{{param.sdg_Goal_Description.sdg_Goal.sdgGoalName}}</td>          
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>

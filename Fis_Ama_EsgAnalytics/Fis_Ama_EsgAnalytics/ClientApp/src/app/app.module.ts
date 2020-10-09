@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { FlexLayoutModule} from '@angular/flex-layout'
+import { FlexLayoutModule } from '@angular/flex-layout'
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -89,6 +89,10 @@ import { CompareEsgGaugeDetailsComponent } from './compare-esg-info/compare-esg-
 import { CompanyScoreDetailsComponent } from './company-esg-info/company-score-details/company-score-details.component';
 import { CompareScoreDetailsComponent } from './compare-esg-info/compare-score-details/compare-score-details.component';
 import { GlobalCompanySearchComponent } from './global-company-search/global-company-search.component';
+import { EsgParametersComponent } from './setup/esg-parameters/esg-parameters.component';
+import { SectorGoalWeightageComponent } from './setup/sector-goal-weightage/sector-goal-weightage.component';
+import { DataSetupComponent } from './setup/data-setup.component';
+import { InputEsgScoreComponent } from './setup/input-esg-score/input-esg-score.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +109,10 @@ import { GlobalCompanySearchComponent } from './global-company-search/global-com
     CompanyScoreDetailsComponent,
     CompareScoreDetailsComponent,
     GlobalCompanySearchComponent,
+    EsgParametersComponent,
+    SectorGoalWeightageComponent,
+    DataSetupComponent,
+    InputEsgScoreComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -115,18 +123,26 @@ import { GlobalCompanySearchComponent } from './global-company-search/global-com
     GaugeChartModule,
     RouterModule.forRoot([
       {
-        path: 'home', component: HomeComponent,       
+        path: 'home', component: HomeComponent
       },
       {
-        path: '', redirectTo: 'home', pathMatch: 'full' 
+        path: '', redirectTo: 'home', pathMatch: 'full'
+      },
+      {
+        path: 'setup', component: DataSetupComponent, children: [
+          { path: '', redirectTo: 'parameters', pathMatch: 'full' },
+          { path: 'parameters', component: EsgParametersComponent },
+          { path: 'sectorwiseGoals', component: SectorGoalWeightageComponent },
+          { path: 'inputScore', component:InputEsgScoreComponent}
+        ]
       },
       {
         path: 'globalSearch', component: GlobalCompanySearchComponent, children: [
           { path: '', redirectTo: 'companyEsgInfo/1', pathMatch: 'full' },
           { path: 'companyEsgInfo/:id', component: CompanyEsgInfoComponent },
-          { path: 'compareEsgInfo', component: CompareEsgInfoComponent }          
+          { path: 'compareEsgInfo', component: CompareEsgInfoComponent }
         ]
-      }    
+      }
     ], { initialNavigation: 'enabled' }),
     FlexLayoutModule,
     BrowserAnimationsModule

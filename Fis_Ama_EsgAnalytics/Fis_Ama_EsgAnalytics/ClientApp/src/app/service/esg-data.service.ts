@@ -177,15 +177,14 @@ export class EsgDataService {
     { "sector": this.sectors[4], "sdg_Goal_Description": this.sdgGoalDescriptions[15], "weightage": 15 },
     { "sector": this.sectors[4], "sdg_Goal_Description": this.sdgGoalDescriptions[16], "weightage": 15 },
 
-
-    { "sector": this.sectors[2], "sdg_Goal_Description": this.sdgGoalDescriptions[4], "weightage": 10 },
-    { "sector": this.sectors[2], "sdg_Goal_Description": this.sdgGoalDescriptions[2], "weightage": 10 },
-    { "sector": this.sectors[2], "sdg_Goal_Description": this.sdgGoalDescriptions[5], "weightage": 10 },
-    { "sector": this.sectors[2], "sdg_Goal_Description": this.sdgGoalDescriptions[8], "weightage": 15 },
-    { "sector": this.sectors[2], "sdg_Goal_Description": this.sdgGoalDescriptions[11], "weightage": 15 },
-    { "sector": this.sectors[2], "sdg_Goal_Description": this.sdgGoalDescriptions[15], "weightage": 15 },
-    { "sector": this.sectors[2], "sdg_Goal_Description": this.sdgGoalDescriptions[16], "weightage": 15 },
-    { "sector": this.sectors[2], "sdg_Goal_Description": this.sdgGoalDescriptions[6], "weightage": 10 },
+    { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[4], "weightage": 10 },
+    { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[2], "weightage": 10 },
+    { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[5], "weightage": 10 },
+    { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[8], "weightage": 15 },
+    { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[11], "weightage": 15 },
+    { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[15], "weightage": 15 },
+    { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[16], "weightage": 15 },
+    { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[6], "weightage": 10 },
 
   ];
 
