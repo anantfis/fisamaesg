@@ -3,11 +3,12 @@ import { company } from '../models/company';
 import { provider } from '../models/provider';
 import { sector, sectorGoalWeightage } from '../models/sector';
 import { esgInputData } from '../models/esgInputData';
-import { Observable } from 'rxjs';
 import { esgScore, preparednessScore, preparednessOpinion } from '../models/score';
 import { esgCategory } from '../models/esgcategory';
 import { sdgGoal, sdgGoalDescription } from '../models/sdgGoals';
 import { esgParameter } from '../models/esgParameter';
+import { SectorCompanyParameterBaseData } from '../models/sector-company-basedata';
+import { isNullOrUndefined } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,12 @@ export class EsgDataService {
     { "companyId": 4, "companyName": "Infosys" },
     { "companyId": 5, "companyName": "Accenture" },
     { "companyId": 6, "companyName": "Cognizant" },
-    { "companyId": 7, "companyName": "Unilever" },
+    { "companyId": 7, "companyName": "ITC" },
     { "companyId": 8, "companyName": "P&G" },
     { "companyId": 9, "companyName": "HUL" },
-    { "companyId": 10, "companyName": "GoAir" },
-    { "companyId": 11, "companyName": "AirAsia" },
-    { "companyId": 12, "companyName": "Vistara" },
+    //{ "companyId": 10, "companyName": "GoAir" },
+    //{ "companyId": 11, "companyName": "AirAsia" },
+    //{ "companyId": 12, "companyName": "Vistara" },
   ];
   private providers: provider[] = [
     { "providerId": 1, "providerName": "CSRHub" },
@@ -40,6 +41,7 @@ export class EsgDataService {
     { "esgScoreId": 1, "esgScoreDescription": "Strong", "esgScoreValue": 10 },
     { "esgScoreId": 2, "esgScoreDescription": "Good", "esgScoreValue": 7.5 },
     { "esgScoreId": 3, "esgScoreDescription": "Bad", "esgScoreValue": 5 },
+    { "esgScoreId": 4, "esgScoreDescription": "-NA-", "esgScoreValue": 0 },
   ];
   private preparednessScores: preparednessScore[] = [
     { "preparednessScoreId": 1, "preparednessScoreName": "Excellent", "preparednessScoreValue": 3 },
@@ -47,10 +49,10 @@ export class EsgDataService {
     { "preparednessScoreId": 3, "preparednessScoreName": "Bad", "preparednessScoreValue": 1 },
   ];
   private preparednessOpinions: preparednessOpinion[] = [
-    { "preparednessOpinionId": 1, "preparednessOpinionName": "Awareness"},
-    { "preparednessOpinionId": 2, "preparednessOpinionName": "Assessment"},
-    { "preparednessOpinionId": 3, "preparednessOpinionName": "Action"},
-    { "preparednessOpinionId": 4, "preparednessOpinionName": "Culture"},
+    { "preparednessOpinionId": 1, "preparednessOpinionName": "Awareness" },
+    { "preparednessOpinionId": 2, "preparednessOpinionName": "Assessment" },
+    { "preparednessOpinionId": 3, "preparednessOpinionName": "Action" },
+    { "preparednessOpinionId": 4, "preparednessOpinionName": "Culture" },
     { "preparednessOpinionId": 5, "preparednessOpinionName": "Decision Making" },
   ]
   private esgGoalCategories: esgCategory[] = [
@@ -165,6 +167,7 @@ export class EsgDataService {
     { "sectorId": 5, "sectorName": "Manufacturing" }
   ];
   private sectorGoalWeightage: sectorGoalWeightage[] = [
+    // Manufacturing 
     { "sector": this.sectors[4], "sdg_Goal_Description": this.sdgGoalDescriptions[0], "weightage": 8 },
     { "sector": this.sectors[4], "sdg_Goal_Description": this.sdgGoalDescriptions[2], "weightage": 8 },
     { "sector": this.sectors[4], "sdg_Goal_Description": this.sdgGoalDescriptions[4], "weightage": 8 },
@@ -177,6 +180,20 @@ export class EsgDataService {
     { "sector": this.sectors[4], "sdg_Goal_Description": this.sdgGoalDescriptions[15], "weightage": 15 },
     { "sector": this.sectors[4], "sdg_Goal_Description": this.sdgGoalDescriptions[16], "weightage": 15 },
 
+    //Pharma
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[0], "weightage": 8 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[2], "weightage": 8 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[4], "weightage": 8 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[5], "weightage": 8 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[6], "weightage": 8 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[8], "weightage": 7 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[11], "weightage": 7 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[12], "weightage": 8 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[14], "weightage": 8 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[15], "weightage": 15 },
+    { "sector": this.sectors[0], "sdg_Goal_Description": this.sdgGoalDescriptions[16], "weightage": 15 },
+
+    //Software
     { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[4], "weightage": 10 },
     { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[2], "weightage": 10 },
     { "sector": this.sectors[1], "sdg_Goal_Description": this.sdgGoalDescriptions[5], "weightage": 10 },
@@ -231,7 +248,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -281,7 +303,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -331,7 +358,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -381,7 +413,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -431,7 +468,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -481,7 +523,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -531,7 +578,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -581,7 +633,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -631,7 +688,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -681,7 +743,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -731,7 +798,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -781,7 +853,12 @@ export class EsgDataService {
       goal9: 45,
       goal10: 56,
       goal11: 61,
-      goal12: 81
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
     },
     reportingDate: null,
     reportingPeriod: '2020 Q3',
@@ -789,6 +866,271 @@ export class EsgDataService {
     financialQuarter: 'Q3',
   }
   private esgData: esgInputData[] = [this.esgData1, this.esgData2, this.esgData3, this.esgData4, this.esgData5, this.esgData6, this.esgData7, this.esgData8, this.esgData9, this.esgData10, this.esgData11, this.esgData12];
+
+  private SectorCompanyParameterBaseData_Lupin: SectorCompanyParameterBaseData = {
+    sector: this.sectors[0],
+    company: this.companies[0],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [],
+    pharmaParametersRatings: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[11], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[12], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[13], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[14], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[15], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[16], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[17], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[18], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[19], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[20], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[21], esgScore: this.esgScores[0] },
+    ],
+    softwareParametersRatings: []
+  };
+  private SectorCompanyParameterBaseData_sun: SectorCompanyParameterBaseData = {
+    sector: this.sectors[0],
+    company: this.companies[1],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [],
+    pharmaParametersRatings: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[11], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[12], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[13], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[14], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[15], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[16], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[17], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[18], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[19], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[20], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[21], esgScore: this.esgScores[0] },
+    ],
+    softwareParametersRatings: []
+  };
+  private SectorCompanyParameterBaseData_cipla: SectorCompanyParameterBaseData = {
+    sector: this.sectors[0],
+    company: this.companies[2],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [],
+    pharmaParametersRatings: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[11], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[12], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[13], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[14], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[15], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[16], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[17], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[18], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[19], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[20], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[21], esgScore: this.esgScores[0] },
+    ],
+    softwareParametersRatings: []
+  };
+  private SectorCompanyParameterBaseData_infosys: SectorCompanyParameterBaseData = {
+    sector: this.sectors[1],
+    company: this.companies[3],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [],
+    pharmaParametersRatings: [],
+    softwareParametersRatings: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[22], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[23], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[24], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[25], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[26], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[27], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[28], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[29], esgScore: this.esgScores[0] }
+    ]
+  };
+  private SectorCompanyParameterBaseData_accenture: SectorCompanyParameterBaseData = {
+    sector: this.sectors[1],
+    company: this.companies[4],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [],
+    pharmaParametersRatings: [],
+    softwareParametersRatings: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[22], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[23], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[24], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[25], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[26], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[27], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[28], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[29], esgScore: this.esgScores[0] }
+    ]
+  };
+  private SectorCompanyParameterBaseData_cognizant: SectorCompanyParameterBaseData = {
+    sector: this.sectors[1],
+    company: this.companies[5],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [],
+    pharmaParametersRatings: [],
+    softwareParametersRatings: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[22], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[23], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[24], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[25], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[26], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[27], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[28], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[29], esgScore: this.esgScores[0] }
+    ]
+  };
+  private SectorCompanyParameterBaseData_itc: SectorCompanyParameterBaseData = {
+    sector: this.sectors[4],
+    company: this.companies[6],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[0], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[1], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[2], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[3], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[4], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[5], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[6], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[7], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[8], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[9], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[10], esgScore: this.esgScores[0] },
+    ],
+    pharmaParametersRatings: [],
+    softwareParametersRatings: []
+  };
+  private SectorCompanyParameterBaseData_png: SectorCompanyParameterBaseData = {
+    sector: this.sectors[4],
+    company: this.companies[7],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[0], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[1], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[2], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[3], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[4], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[5], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[6], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[7], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[8], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[9], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[10], esgScore: this.esgScores[0] },
+    ],
+    pharmaParametersRatings: [],
+    softwareParametersRatings: []
+  };
+  private SectorCompanyParameterBaseData_hul: SectorCompanyParameterBaseData = {
+    sector: this.sectors[4],
+    company: this.companies[8],
+    totalEsgScore: 0,
+    e_sector_region_score: 35,
+    s_sector_region_score: 35,
+    g_sector_region_score: 35,
+    manufacturingParametersRating: [
+      { sectorGoalWeightage: this.sectorGoalWeightage[0], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[1], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[2], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[3], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[4], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[5], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[6], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[7], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[8], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[9], esgScore: this.esgScores[0] },
+      { sectorGoalWeightage: this.sectorGoalWeightage[10], esgScore: this.esgScores[0] },
+    ],
+    pharmaParametersRatings: [],
+    softwareParametersRatings: []
+  };
+
+  public getSectorCompanyParameterBaseDataByName(name: string): SectorCompanyParameterBaseData {
+    switch (name.toLowerCase()) {
+      case "lupin":
+        return this.SectorCompanyParameterBaseData_Lupin;
+        break;
+      case 'sun':
+        return this.SectorCompanyParameterBaseData_sun;
+        break;
+      case 'cipla':
+        return this.SectorCompanyParameterBaseData_cipla;
+        break;
+      case 'infosys':
+        return this.SectorCompanyParameterBaseData_infosys;
+        break;
+      case 'accenture':
+        return this.SectorCompanyParameterBaseData_accenture;
+        break;
+      case 'cognizant':
+        return this.SectorCompanyParameterBaseData_cognizant;
+        break;
+      case 'png':
+        return this.SectorCompanyParameterBaseData_png;
+        break;
+      case 'itc':
+        return this.SectorCompanyParameterBaseData_itc;
+        break;
+      case 'hul':
+        return this.SectorCompanyParameterBaseData_hul;
+        break;
+    }
+  }
+
+  public getAllSectorCompanyParameterBaseDataByName(): SectorCompanyParameterBaseData[] {
+    return [this.SectorCompanyParameterBaseData_Lupin,
+    this.SectorCompanyParameterBaseData_sun,
+    this.SectorCompanyParameterBaseData_cipla,
+    this.SectorCompanyParameterBaseData_infosys,
+    this.SectorCompanyParameterBaseData_accenture,
+    this.SectorCompanyParameterBaseData_cognizant,
+    this.SectorCompanyParameterBaseData_itc,
+    this.SectorCompanyParameterBaseData_png,
+    this.SectorCompanyParameterBaseData_hul
+    ]
+  }
+
+  public saveAllDataToLocalStorageFirstTime() {
+    if (isNullOrUndefined(localStorage.getItem('companyData_lupin')))
+      localStorage.setItem('companyData_lupin', JSON.stringify(this.SectorCompanyParameterBaseData_Lupin));
+    if (isNullOrUndefined(localStorage.getItem('companyData_sun')))
+      localStorage.setItem('companyData_sun', JSON.stringify(this.SectorCompanyParameterBaseData_sun));
+    if (isNullOrUndefined(localStorage.getItem('companyData_cipla')))
+      localStorage.setItem('companyData_cipla', JSON.stringify(this.SectorCompanyParameterBaseData_cipla));
+    if (isNullOrUndefined(localStorage.getItem('companyData_infosys')))
+      localStorage.setItem('companyData_infosys', JSON.stringify(this.SectorCompanyParameterBaseData_infosys));
+    if (isNullOrUndefined(localStorage.getItem('companyData_accenture')))
+      localStorage.setItem('companyData_accenture', JSON.stringify(this.SectorCompanyParameterBaseData_accenture));
+    if (isNullOrUndefined(localStorage.getItem('companyData_cognizant')))
+      localStorage.setItem('companyData_cognizant', JSON.stringify(this.SectorCompanyParameterBaseData_cognizant));
+    if (isNullOrUndefined(localStorage.getItem('companyData_png')))
+      localStorage.setItem('companyData_png', JSON.stringify(this.SectorCompanyParameterBaseData_png));
+    if (isNullOrUndefined(localStorage.getItem('companyData_itc')))
+      localStorage.setItem('companyData_itc', JSON.stringify(this.SectorCompanyParameterBaseData_itc));
+    if (isNullOrUndefined(localStorage.getItem('companyData_hul')))
+      localStorage.setItem('companyData_hul', JSON.stringify(this.SectorCompanyParameterBaseData_hul));
+  }
 
   public getAllCompanies(): company[] {
     return this.companies;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../service/local-storage.service';
+import { SectorCompanyParameterBaseData } from '../../models/sector-company-basedata';
 
 @Component({
   selector: 'app-input-esg-score',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputEsgScoreComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private localStorageService: LocalStorageService) { }
+  savedData: SectorCompanyParameterBaseData[];
   ngOnInit() {
+    this.savedData = this.localStorageService.getAllCompanyDataFromLocalStorage();
   }
-
 }

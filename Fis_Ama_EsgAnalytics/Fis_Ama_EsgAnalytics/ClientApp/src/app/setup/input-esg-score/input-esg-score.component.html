@@ -1,2 +1,21 @@
-<p>input-esg-score works!</p>
-<p>Create a form and persisitent layer ofor this.</p>
+<mat-card>
+  <mat-card-title>Data Persisted</mat-card-title>
+  <mat-card-subtitle>In Local Storage</mat-card-subtitle>
+  <mat-card-content fxLayout =" row wrap" fxLayoutAlign="center" fxLayoutGap="30px">
+    <mat-card *ngFor="let data of savedData" style="background-color:lightblue; width:25%; padding: 10px; margin: 10px;">
+      <mat-card-title>Company : {{data.company.companyName}}</mat-card-title>
+      <mat-card-subtitle>Sector : {{data.sector.sectorName}}</mat-card-subtitle>
+      <mat-card-content>
+        <ol>
+          <li>E-Score From Report : {{data.e_sector_region_score}}</li>
+          <li>S-Score From Report : {{data.s_sector_region_score}}</li>
+          <li>G-Score From Report : {{data.g_sector_region_score}}</li>
+        </ol>       
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+  <!--<ul *ngFor="let data of savedData">
+    <li>{{data.company.companyName}}</li>
+  </ul>-->
+</mat-card>
+

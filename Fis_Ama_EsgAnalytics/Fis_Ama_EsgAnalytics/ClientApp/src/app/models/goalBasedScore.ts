@@ -11,4 +11,9 @@ export class goalBasedScore {
   goal10: number;
   goal11: number;
   goal12: number;
+  goal13: number;
+  goal14: number;
+  goal15: number;
+  goal16: number;
+  goal17: number;
 }
