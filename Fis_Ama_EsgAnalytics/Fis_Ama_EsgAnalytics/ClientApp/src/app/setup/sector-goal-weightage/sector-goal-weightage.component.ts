@@ -9,12 +9,21 @@ import { EsgDataService } from '../../service/esg-data.service';
 })
 export class SectorGoalWeightageComponent implements OnInit {
   sectorwiseweightage: sectorGoalWeightage[] = [];
-  headElements: string[] = ['Sector Name', 'Goal Description','Goal', 'Category', 'Weightage'];
-
+  headElements: string[] = ['Goal Description','Goal', 'Category', 'Weightage'];
+  uniqueVendors: string[] = [];
+  groupedData: any[] = [];
   constructor(private esgDataService:EsgDataService) { }
 
   ngOnInit() {
     this.sectorwiseweightage = this.esgDataService.getAllSectorGoalWeightage();
+    this.sectorwiseweightage.forEach(x => {
+      if (this.uniqueVendors.indexOf(x.sector.sectorName) === -1) {
+        this.uniqueVendors.push(x.sector.sectorName);
+      }
+    });
+    this.uniqueVendors.forEach(sec => {
+      let secData = this.sectorwiseweightage.filter(x => x.sector.sectorName === sec);
+      this.groupedData.push({ sec, secData });
+    });    
   }
-
 }

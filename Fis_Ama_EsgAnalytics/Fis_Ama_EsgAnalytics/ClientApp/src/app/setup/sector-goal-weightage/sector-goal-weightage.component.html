@@ -1,22 +1,27 @@
 <mat-card>
   <mat-card-title>Sector/Industry Goal Weightage</mat-card-title>
   <mat-card-subtitle>Weigtage Index assigned to each parameter</mat-card-subtitle>
-  <mat-card-content fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
-    <table class="table table-striped table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th *ngFor="let head of headElements" scope="col">{{head}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let secwet of sectorwiseweightage">
-          <td>{{secwet.sector.sectorName}}</td>
-          <td>{{secwet.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
-          <td>{{secwet.sdg_Goal_Description.sdg_Goal.sdgGoalName}}</td>
-          <td>{{secwet.sdg_Goal_Description.sdg_Goal.esg_Category.esgCategoryName}}</td>
-          <td>{{secwet.weightage}}%</td>
-        </tr>
-      </tbody>
-    </table>
+  <mat-card-content fxLayout fxLayoutAlign="left" fxLayoutGap="20px">
+    <mat-card *ngFor="let sector of groupedData">
+      <span class="factor">SECTOR : {{sector.sec | uppercase}}</span>
+      <table class="table table-striped table-bordered">
+        <tbody>
+          <tr class="thead-dark">
+            <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+          </tr>
+          <tr *ngFor="let secwet of sector.secData">
+            <td>{{secwet.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
+            <td>{{secwet.sdg_Goal_Description.sdg_Goal.sdgGoalName}}</td>
+            <td>{{secwet.sdg_Goal_Description.sdg_Goal.esg_Category.esgCategoryName}}</td>
+            <td>{{secwet.weightage}}%</td>
+          </tr>
+         
+        </tbody>
+       
+
+      </table>
+     
+
+    </mat-card>
   </mat-card-content>
 </mat-card>
