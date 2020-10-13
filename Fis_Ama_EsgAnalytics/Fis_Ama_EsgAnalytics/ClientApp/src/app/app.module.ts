@@ -93,6 +93,7 @@ import { EsgParametersComponent } from './setup/esg-parameters/esg-parameters.co
 import { SectorGoalWeightageComponent } from './setup/sector-goal-weightage/sector-goal-weightage.component';
 import { DataSetupComponent } from './setup/data-setup.component';
 import { InputEsgScoreComponent } from './setup/input-esg-score/input-esg-score.component';
+import { CompanyDataEditComponent } from './setup/company-data-edit/company-data-edit.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { InputEsgScoreComponent } from './setup/input-esg-score/input-esg-score.
     SectorGoalWeightageComponent,
     DataSetupComponent,
     InputEsgScoreComponent,
+    CompanyDataEditComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -146,6 +148,9 @@ import { InputEsgScoreComponent } from './setup/input-esg-score/input-esg-score.
     ], { initialNavigation: 'enabled' }),
     FlexLayoutModule,
     BrowserAnimationsModule
+  ],
+  entryComponents: [
+    CompanyDataEditComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

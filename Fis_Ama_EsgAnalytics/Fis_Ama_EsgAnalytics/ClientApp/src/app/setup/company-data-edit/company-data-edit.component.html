@@ -1,0 +1,26 @@
+<!--<p>{{companyData.companyData.company.companyName}} is being edited.</p>-->
+
+<mat-card>
+  <mat-card-title>Edit Data for Company : {{companyData.companyData.company.companyName | uppercase}}</mat-card-title>
+  <mat-card-subtitle>(Assuming this rating comes from ML/AI/NLP Engine) </mat-card-subtitle>
+  <mat-card-content fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start">
+    <mat-card style="background-color:silver;">
+      <mat-card-title style="color:cadetblue;">Company : {{companyData.companyData.company.companyName | uppercase}}</mat-card-title>
+      <mat-card-subtitle style="color:gray; font-weight:bold;">(MSCI/CSRHUB/S&P500)</mat-card-subtitle>
+      <mat-card-content>
+        <!--<ol>
+          <li>E-Score From Report : {{(data.e_sector_region_score[0] + data.e_sector_region_score[1] + data.e_sector_region_score[2])/3 | number : '1.2-2'}}</li>
+          <li>S-Score From Report : {{(data.s_sector_region_score[0] + data.s_sector_region_score[1] + data.s_sector_region_score[2])/3 | number : '1.2-2'}}</li>
+          <li>G-Score From Report : {{(data.g_sector_region_score[0] + data.g_sector_region_score[1] + data.g_sector_region_score[2])/3 | number : '1.2-2'}}</li>
+        </ol>-->
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button class="btn btn-primary" (click)="Save()">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
+
+
+
+
