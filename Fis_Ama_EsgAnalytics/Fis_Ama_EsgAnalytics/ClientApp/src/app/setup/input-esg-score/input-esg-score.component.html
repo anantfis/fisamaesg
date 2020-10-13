@@ -2,15 +2,15 @@
   <mat-card-title>Data Persisted</mat-card-title>
   <mat-card-subtitle>In Local Storage</mat-card-subtitle>
   <mat-card-content fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start">
-    <mat-card *ngFor="let data of savedData" style="background-color:lightgreen; width:30%;">
+    <mat-card *ngFor="let data of savedData" style="background-color:lightcyan; width:30%; border-bottom:1px solid blue;">
       <mat-card-title style="color:cadetblue;">Company : {{data.company.companyName}}</mat-card-title>
       <mat-card-subtitle style="color:gray; font-weight:bold;">Sector : {{data.sector.sectorName}}</mat-card-subtitle>
       <mat-card-content>
-        <ol>
+        <ul>
           <li>E-Score From Report : {{(data.e_sector_region_score[0] + data.e_sector_region_score[1] + data.e_sector_region_score[2])/3 | number : '1.2-2'}}</li>
           <li>S-Score From Report : {{(data.s_sector_region_score[0] + data.s_sector_region_score[1] + data.s_sector_region_score[2])/3 | number : '1.2-2'}}</li>
           <li>G-Score From Report : {{(data.g_sector_region_score[0] + data.g_sector_region_score[1] + data.g_sector_region_score[2])/3 | number : '1.2-2'}}</li>
-        </ol>
+        </ul>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button class="btn btn-primary" (click)="openEditDialog(data)">Edit Data</button>
