@@ -20,7 +20,7 @@ export class InputEsgScoreComponent implements OnInit {
   openEditDialog(firmData: SectorCompanyParameterBaseData): void {
     const dialogRef = this.dialog.open(CompanyDataEditComponent, {
       height: '600px',
-      width: '800px',
+      width: '1000px',
       data: { companyData: firmData}
     });
 

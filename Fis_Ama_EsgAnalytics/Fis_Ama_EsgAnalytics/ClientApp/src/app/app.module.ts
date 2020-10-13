@@ -94,6 +94,7 @@ import { SectorGoalWeightageComponent } from './setup/sector-goal-weightage/sect
 import { DataSetupComponent } from './setup/data-setup.component';
 import { InputEsgScoreComponent } from './setup/input-esg-score/input-esg-score.component';
 import { CompanyDataEditComponent } from './setup/company-data-edit/company-data-edit.component';
+import { RatingScoreDropDownComponent } from './setup/rating-score-drop-down/rating-score-drop-down.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { CompanyDataEditComponent } from './setup/company-data-edit/company-data
     DataSetupComponent,
     InputEsgScoreComponent,
     CompanyDataEditComponent,
+    RatingScoreDropDownComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
