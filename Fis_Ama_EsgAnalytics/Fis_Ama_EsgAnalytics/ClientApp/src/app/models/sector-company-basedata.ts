@@ -29,9 +29,9 @@ export class SectorCompanyParameterBaseData {
   e_sector_region_score: number[];
   s_sector_region_score: number[];
   g_sector_region_score: number[];
-  manufacturingParametersRating: ParametersRating[];
-  pharmaParametersRatings: ParametersRating[];
-  softwareParametersRatings: ParametersRating[];
+  parametersRating: ParametersRating[];
+  //pharmaParametersRatings: ParametersRating[];
+  //softwareParametersRatings: ParametersRating[];
 }
 
 export class ParametersRating {

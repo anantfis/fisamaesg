@@ -1,95 +1,107 @@
 <!--<p>{{companyData.companyData.company.companyName}} is being edited.</p>-->
 
-<mat-card>
-  <mat-card-title>Edit Data for Company : {{companyData.companyData.company.companyName | uppercase}}</mat-card-title>
+<mat-card *ngIf="companyDetailsData">
+  <mat-card-title>Edit Data for Company : {{companyDetailsData.company.companyName | uppercase}}</mat-card-title>
   <mat-card-subtitle>(Assuming this rating comes from ML/AI/NLP Engine) </mat-card-subtitle>
   <mat-card-content fxLayout="row " fxLayoutAlign="center">
     <mat-card style="background-color:lightgray;width:90%">
-      <mat-card-title style="color:cadetblue;">Company : {{companyData.companyData.company.companyName | uppercase}}</mat-card-title>
+      <mat-card-title style="color:cadetblue;">Company : {{companyDetailsData.company.companyName | uppercase}}</mat-card-title>
       <mat-card-subtitle style="color:gray; font-weight:bold;">(MSCI/CSRHUB/S&P500)</mat-card-subtitle>
-      <mat-card-content *ngIf="companyData.companyData.sector.sectorId === 1">
+      <mat-card-content *ngIf="companyDetailsData.sector.sectorId === 1">
         <table class="table table-striped table-bordered">
           <tbody>
             <tr class="thead-dark">
               <th *ngFor="let head of headElements" scope="col">{{head}}</th>
             </tr>
-            <tr *ngFor="let parameter of getSectorWiseGoals('pharma')">
-              <td>{{parameter.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
+            <tr *ngFor="let parameter of companyDetailsData.parametersRating">
+              <td>{{parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
               <td>
-                <app-rating-score-drop-down></app-rating-score-drop-down>
-                <!--<mat-form-field>
-                  <mat-label>Rating</mat-label>
-                  <mat-select [(value)]="selected">
-                    <mat-option>None</mat-option>
-                    <mat-option value="option1">Strong</mat-option>
-                    <mat-option value="option2">Good</mat-option>
-                    <mat-option value="option3">Bad</mat-option>
-                    <mat-option value="option4">-NA-</mat-option>
-                  </mat-select>
-                </mat-form-field>-->
+                <app-rating-score-drop-down [dataProvider]="headElements[1]"
+                                            [ratingValue]="getRatingValue(headElements[1],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[1],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)"
+                                            >
+                </app-rating-score-drop-down>
               </td>
               <td>
-                <app-rating-score-drop-down></app-rating-score-drop-down>
-                <!--<mat-form-field>
-                  <mat-label>Rating</mat-label>
-                  <mat-select [(value)]="selected">
-                    <mat-option>None</mat-option>
-                    <mat-option value="option1">Strong</mat-option>
-                    <mat-option value="option2">Good</mat-option>
-                    <mat-option value="option3">Bad</mat-option>
-                    <mat-option value="option4">-NA-</mat-option>
-                  </mat-select>
-                </mat-form-field>-->
+                <app-rating-score-drop-down [dataProvider]="headElements[2]"
+                                            [ratingValue]="getRatingValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)"
+                                            >
+                </app-rating-score-drop-down>
               </td>
               <td>
-                <app-rating-score-drop-down></app-rating-score-drop-down>
-                <!--<mat-form-field>
-                  <mat-label>Rating</mat-label>
-                  <mat-select [(value)]="selected">
-                    <mat-option>None</mat-option>
-                    <mat-option value="option1">Strong</mat-option>
-                    <mat-option value="option2">Good</mat-option>
-                    <mat-option value="option3">Bad</mat-option>
-                    <mat-option value="option4">-NA-</mat-option>
-                  </mat-select>
-                </mat-form-field>-->
+                <app-rating-score-drop-down [dataProvider]="headElements[3]"
+                                            [ratingValue]="getRatingValue(headElements[3],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)"
+                                            >
+                </app-rating-score-drop-down>
               </td>
             </tr>
           </tbody>
         </table>
       </mat-card-content>
-      <mat-card-content *ngIf="companyData.companyData.sector.sectorId === 2">
+      <mat-card-content *ngIf="companyDetailsData.sector.sectorId === 2">
         <table class="table table-striped table-bordered">
           <tbody>
             <tr class="thead-dark">
               <th *ngFor="let head of headElements" scope="col">{{head}}</th>
             </tr>
-            <tr *ngFor="let parameter of getSectorWiseGoals('software')">
-              <td>{{parameter.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
-              <td><app-rating-score-drop-down></app-rating-score-drop-down></td>
-              <td><app-rating-score-drop-down></app-rating-score-drop-down></td>
-              <td><app-rating-score-drop-down></app-rating-score-drop-down></td>
+            <tr *ngFor="let parameter of companyDetailsData.parametersRating">
+              <td>{{parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
+              <td>
+                <app-rating-score-drop-down [dataProvider]="headElements[1]"
+                                            [ratingValue]="getRatingValue(headElements[1],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[1],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)">
+                </app-rating-score-drop-down>
+              </td>
+              <td>
+                <app-rating-score-drop-down [dataProvider]="headElements[2]"
+                                            [ratingValue]="getRatingValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)">
+                </app-rating-score-drop-down>
+              </td>
+              <td>
+                <app-rating-score-drop-down [dataProvider]="headElements[3]"
+                                            [ratingValue]="getRatingValue(headElements[3],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)">
+                </app-rating-score-drop-down>
+              </td>
             </tr>
           </tbody>
         </table>
       </mat-card-content>
-      <mat-card-content *ngIf="companyData.companyData.sector.sectorId === 5">
+      <mat-card-content *ngIf="companyDetailsData.sector.sectorId === 5">
         <table class="table table-striped table-bordered">
           <tbody>
             <tr class="thead-dark">
               <th *ngFor="let head of headElements" scope="col">{{head}}</th>
             </tr>
-            <tr *ngFor="let parameter of getSectorWiseGoals('manufacturing')">
-              <td>{{parameter.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
-              <td><app-rating-score-drop-down></app-rating-score-drop-down></td>
-              <td><app-rating-score-drop-down></app-rating-score-drop-down></td>
-              <td><app-rating-score-drop-down></app-rating-score-drop-down></td>
+            <tr *ngFor="let parameter of companyDetailsData.parametersRating">
+              <td>{{parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName}}</td>
+              <td>
+                <app-rating-score-drop-down [dataProvider]="headElements[1]"
+                                            [ratingValue]="getRatingValue(headElements[1],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[1],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)">
+                </app-rating-score-drop-down>
+              </td>
+              <td>
+                <app-rating-score-drop-down [dataProvider]="headElements[2]"
+                                            [ratingValue]="getRatingValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)">
+                </app-rating-score-drop-down>
+              </td>
+              <td>
+                <app-rating-score-drop-down [dataProvider]="headElements[3]"
+                                            [ratingValue]="getRatingValue(headElements[3],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
+                                            (valueChanged)="updateChangedValue(headElements[2],parameter.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)">
+                </app-rating-score-drop-down>
+              </td>
             </tr>
           </tbody>
         </table>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button class="btn btn-primary" (click)="Save()">Save</button>
+        <button mat-button class="btn btn-primary" (click)="saveData()">Save</button>
       </mat-card-actions>
     </mat-card>
   </mat-card-content>

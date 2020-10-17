@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LocalStorageService } from '../../service/local-storage.service';
 import { SectorCompanyParameterBaseData } from '../../models/sector-company-basedata';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSidenav } from '@angular/material';
 import { CompanyDataEditComponent } from '../company-data-edit/company-data-edit.component';
 
 @Component({
@@ -10,9 +10,10 @@ import { CompanyDataEditComponent } from '../company-data-edit/company-data-edit
   styleUrls: ['./input-esg-score.component.css']
 })
 export class InputEsgScoreComponent implements OnInit {
-
+  @ViewChild("sidenavDetails", { static:false }) sidenavDetails: MatSidenav;
   constructor(private localStorageService: LocalStorageService, public dialog: MatDialog) { }
   savedData: SectorCompanyParameterBaseData[];
+  selectedCompany: SectorCompanyParameterBaseData;
   ngOnInit() {
     this.savedData = this.localStorageService.getAllCompanyDataFromLocalStorage();
   }
@@ -27,5 +28,16 @@ export class InputEsgScoreComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.savedData = this.localStorageService.getAllCompanyDataFromLocalStorage();
     });
+  }
+
+  openDetails(companyData: SectorCompanyParameterBaseData) {
+    this.selectedCompany=this.localStorageService.getCompanyDataFromLocalStorageByName(companyData.company.storageName);
+    //this.selectedCompany = companyData;
+    this.sidenavDetails.open();
+  }
+
+  onSaveData(isSaved: boolean) {
+    this.sidenavDetails.close();
+    this.savedData = this.localStorageService.getAllCompanyDataFromLocalStorage();
   }
 }

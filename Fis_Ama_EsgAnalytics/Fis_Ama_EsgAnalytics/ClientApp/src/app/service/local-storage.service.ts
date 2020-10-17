@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SectorCompanyParameterBaseData } from '../models/sector-company-basedata';
+import { companyNameInStorage } from '../models/constants/companyNameInStorage';
 
 @Injectable({
   providedIn: 'root'
@@ -8,42 +9,42 @@ export class LocalStorageService {
 
   constructor() { }
 
-  public getCompanyDataFromLocalStorageByName(name: string): SectorCompanyParameterBaseData {
+  public getCompanyDataFromLocalStorageByName(storageName: companyNameInStorage): SectorCompanyParameterBaseData {
     var data: SectorCompanyParameterBaseData;
-    switch (name.toLowerCase()) {
-      case "lupin":
+    switch (storageName) {
+      case companyNameInStorage.lupin:
         data = JSON.parse(localStorage.getItem('companyData_lupin')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case 'sun':
+      case companyNameInStorage.sun:
         data = JSON.parse(localStorage.getItem('companyData_sun')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case 'cipla':
+      case companyNameInStorage.cipla:
         data = JSON.parse(localStorage.getItem('companyData_cipla')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case 'infosys':
+      case companyNameInStorage.infosys:
         data = JSON.parse(localStorage.getItem('companyData_infosys')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case 'accenture':
+      case companyNameInStorage.accenture:
         data = JSON.parse(localStorage.getItem('companyData_accenture')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case 'cognizant':
+      case companyNameInStorage.cognizant:
         data = JSON.parse(localStorage.getItem('companyData_cognizant')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case 'png':
+      case companyNameInStorage.png:
         data = JSON.parse(localStorage.getItem('companyData_png')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case 'itc':
+      case companyNameInStorage.itc:
         data = JSON.parse(localStorage.getItem('companyData_itc')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case 'hul':
+      case companyNameInStorage.hul:
         data = JSON.parse(localStorage.getItem('companyData_hul')) as SectorCompanyParameterBaseData;
         return data;
         break;
@@ -64,7 +65,7 @@ export class LocalStorageService {
     return data;
   }
 
-  public updateCompanyDataInLocalTempDataByName(name: string, data: SectorCompanyParameterBaseData) {
-    localStorage.setItem(name, JSON.stringify(data));
+  public updateCompanyDataInLocalTempDataByName(data: SectorCompanyParameterBaseData) {
+    localStorage.setItem(data.company.storageName, JSON.stringify(data));
   }
 }

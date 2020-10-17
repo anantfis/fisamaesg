@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef,} from '@angular/material';
 import { MatDialog} from '@angular/material/dialog';
 import { SectorCompanyParameterBaseData } from '../../models/sector-company-basedata';
 import { EsgDataService } from '../../service/esg-data.service';
+import { LocalStorageService } from '../../service/local-storage.service';
 
 @Component({
   selector: 'app-company-data-edit',
@@ -11,16 +12,32 @@ import { EsgDataService } from '../../service/esg-data.service';
 })
 export class CompanyDataEditComponent implements OnInit {
   companyDataToEdit: SectorCompanyParameterBaseData;
-  headElements :string[] =['Parameter', 'MSCI', 'S&P500', 'CSRHub']
-  constructor(private esgDataService: EsgDataService,
-    public dialogRef: MatDialogRef<CompanyDataEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public companyData: SectorCompanyParameterBaseData) { }
+  headElements: string[] = ['Parameter','MSCI', 'S&P500', 'CSRHub']
+  @Input() companyDetailsData: SectorCompanyParameterBaseData;
+  @Output() onSaveData: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(private esgDataService: EsgDataService, private storageService: LocalStorageService) { }
 
   ngOnInit() {
-    this.companyDataToEdit = this.companyData;
+    this.companyDataToEdit = this.companyDetailsData;
   }
 
   getSectorWiseGoals(sector: string) {
     return this.esgDataService.getAllSectorGoalWeightage().filter(x => x.sector.sectorName.toLowerCase() === sector);
+  }
+
+  getRatingValue(providerName, descName, ratingList) {
+    var ratingValue= ratingList.find(a => a.provider.providerName === providerName && a.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName === descName);
+    return ratingValue.esgScore;
+  }
+
+  saveData() {
+    //console.dir(this.companyDetailsData);
+    this.storageService.updateCompanyDataInLocalTempDataByName(this.companyDetailsData);
+    this.onSaveData.emit(true);
+  }
+
+  updateChangedValue(providerName, descName,ratingList,changedValue) {
+    var ratingValue = ratingList.find(a => a.provider.providerName === providerName && a.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName === descName);
+    ratingValue.esgScore = changedValue;
   }
 }
