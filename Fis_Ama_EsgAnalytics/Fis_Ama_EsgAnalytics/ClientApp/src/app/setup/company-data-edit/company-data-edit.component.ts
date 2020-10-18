@@ -4,6 +4,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { SectorCompanyParameterBaseData } from '../../models/sector-company-basedata';
 import { EsgDataService } from '../../service/esg-data.service';
 import { LocalStorageService } from '../../service/local-storage.service';
+import { sectorGoalWeightage } from '../../models/sector';
 
 @Component({
   selector: 'app-company-data-edit',
@@ -12,6 +13,11 @@ import { LocalStorageService } from '../../service/local-storage.service';
 })
 export class CompanyDataEditComponent implements OnInit {
   companyDataToEdit: SectorCompanyParameterBaseData;
+  parameters: sectorGoalWeightage[];
+  pharmaParams: sectorGoalWeightage[];
+  softwareParams: sectorGoalWeightage[];
+  manufacturingParams: sectorGoalWeightage[];
+
   headElements: string[] = ['Parameter','MSCI', 'S&P500', 'CSRHub']
   @Input() companyDetailsData: SectorCompanyParameterBaseData;
   @Output() onSaveData: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -19,6 +25,10 @@ export class CompanyDataEditComponent implements OnInit {
 
   ngOnInit() {
     this.companyDataToEdit = this.companyDetailsData;
+    this.parameters = this.esgDataService.getAllSectorGoalWeightage();
+    this.pharmaParams = this.getParametersBySector(1);
+    this.softwareParams = this.getParametersBySector(2);
+    this.manufacturingParams = this.getParametersBySector(5);
   }
 
   getSectorWiseGoals(sector: string) {
@@ -39,5 +49,9 @@ export class CompanyDataEditComponent implements OnInit {
   updateChangedValue(providerName, descName,ratingList,changedValue) {
     var ratingValue = ratingList.find(a => a.provider.providerName === providerName && a.sectorGoalWeightage.sdg_Goal_Description.sdgGoalDescriptionName === descName);
     ratingValue.esgScore = changedValue;
+  }
+
+  getParametersBySector(sectorId: number) {
+    return this.parameters.filter(x => x.sector.sectorId == sectorId);
   }
 }
