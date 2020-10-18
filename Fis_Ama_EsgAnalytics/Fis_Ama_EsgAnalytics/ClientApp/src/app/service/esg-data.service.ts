@@ -268,13 +268,13 @@ export class EsgDataService {
     company: this.companies[1],
     esgFactorScores: {
       environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
+        energyAndClimateChange: 10,
+        environmentPolicyAndReporting: 10,
+        resourceManagement: 10,
+        greenhouseGases: 10,
+        waterResources: 10,
+        landUsage: 10,
+        wasteManagement: 10
       },
       socialScore: {
         safeManagement: 72,
@@ -538,7 +538,7 @@ export class EsgDataService {
     financialQuarter: 'Q3',
   }
   private esgData7: esgInputData = {
-    sector: this.sectors[2],
+    sector: this.sectors[4],
     provider: this.providers[0],
     company: this.companies[6],
     esgFactorScores: {
@@ -593,7 +593,7 @@ export class EsgDataService {
     financialQuarter: 'Q3',
   }
   private esgData8: esgInputData = {
-    sector: this.sectors[2],
+    sector: this.sectors[4],
     provider: this.providers[0],
     company: this.companies[7],
     esgFactorScores: {
@@ -648,7 +648,7 @@ export class EsgDataService {
     financialQuarter: 'Q3',
   }
   private esgData9: esgInputData = {
-    sector: this.sectors[2],
+    sector: this.sectors[4],
     provider: this.providers[0],
     company: this.companies[8],
     esgFactorScores: {

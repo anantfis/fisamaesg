@@ -1,10 +1,13 @@
 <mat-card class="full-height">
   <div fxLayout>
     <div style="padding-right:10px;">
-      <a routerLink="sectorwiseGoals">Check Sectorwise Weightage</a>
+      <button mat-button class="btn btn-info" style="border:1px solid blue" routerLink="parameters">ESG Parameters</button>
+    </div>
+    <div style="padding-right:10px;">
+      <button mat-button class="btn btn-info" style="border:1px solid blue" routerLink="sectorwiseGoals">Sectorwise Weightage</button>
     </div>
     <div>
-      <a routerLink="inputScore">Input Company Score</a>
+      <button mat-button class="btn btn-info" style="border:1px solid blue" routerLink="inputScore">Simulate Data</button>
     </div>
   </div>
   <router-outlet></router-outlet>

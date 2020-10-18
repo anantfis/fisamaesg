@@ -3,6 +3,7 @@ import { company } from '../../models/company';
 import { gaugeParameters } from '../../models/gaugeParameters';
 import { EsgDataService } from '../../service/esg-data.service';
 import { esgInputData } from '../../models/esgInputData';
+import { CommunicationService } from '../../service/communication.service';
 
 @Component({
   selector: 'app-company-esg-gauge-details',
@@ -11,26 +12,42 @@ import { esgInputData } from '../../models/esgInputData';
   encapsulation: ViewEncapsulation.None
 })
 export class CompanyEsgGaugeDetailsComponent implements OnInit {
-  @Input() companySelected: company;
+  companySelected: company;
 
-  constructor(private esgDataService: EsgDataService) { }
+  constructor(private esgDataService: EsgDataService,
+    private communicationService: CommunicationService) { }
+
   netScoreGauge: gaugeParameters;
   e_ScoreGauge: gaugeParameters;
   s_ScoreGauge: gaugeParameters;
-  g_ScoreGauge: gaugeParameters;
-  companyInput: company;
+  g_ScoreGauge: gaugeParameters;  
   companyData: esgInputData;
   canvaswidth: number = 250;
   needleupdatespeed: number = 2000;
+  companyChangeSubs: any;
+
   ngOnInit() {
-    this.companySelected = this.esgDataService.getAllCompanies()[0]; // should come through @Input, remove hardcoding later
-    this.companyInput = this.esgDataService.getAllCompanies().filter(x => x.companyId === this.companySelected.companyId)[0];
-    this.companyData = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput.companyId)[0];
+    this.companyChangeSubs = this.communicationService.changeEmitted$.subscribe(
+      message => {
+        this.netScoreGauge = new gaugeParameters();
+        this.e_ScoreGauge = new gaugeParameters();
+        this.s_ScoreGauge = new gaugeParameters();
+        this.g_ScoreGauge = new gaugeParameters();
+        this.companySelected = message as company;
+        this.setupData();
+      });
+    this.companySelected = this.esgDataService.getAllCompanies()[0]; // first time select first company in Array : Lupin
+    this.setupData();
+  }
+
+  setupData(): void {
+    this.companySelected = this.esgDataService.getAllCompanies().filter(x => x.companyId === this.companySelected.companyId)[0];
+    this.companyData = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companySelected.companyId)[0];
     this.netScoreGauge = {
-      canvasWidth: this.canvaswidth,    
-      needleValue: this.calculateNetAverage(),    
-      centralLabel: '',    
-      name: 'ESG Score: ' + this.calculateNetAverage().toString().substring(0,2) + '/100' ,   
+      canvasWidth: this.canvaswidth,
+      needleValue: this.calculateNetAverage(),
+      centralLabel: '',
+      name: 'ESG Score: (Id:' + this.companyData.company.companyId + ') = ' + this.calculateNetAverage().toString().substring(0, 2) + '/100',
       bottomLabel: this.calculateNetAverage() >= 75 ? 'Low Risk' : this.calculateNetAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -42,12 +59,13 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
         needleStartValue: 0,
       }
     };
+    console.log(this.netScoreGauge);
     this.e_ScoreGauge = {
-      canvasWidth: this.canvaswidth,    
-      needleValue: this.calculateEnvScoreAverage(),     
-      centralLabel: '',    
-      name: 'Environmental :' + this.calculateEnvScoreAverage().toString().substring(0, 2) + '/100' ,  
-      bottomLabel: this.calculateEnvScoreAverage() >= 75 ? 'Low Risk' : this.calculateEnvScoreAverage() <=35 ? 'High Risk' : 'Medium Risk',    
+      canvasWidth: this.canvaswidth,
+      needleValue: this.calculateEnvScoreAverage(),
+      centralLabel: '',
+      name: 'Environmental :' + this.calculateEnvScoreAverage().toString().substring(0, 2) + '/100',
+      bottomLabel: this.calculateEnvScoreAverage() >= 75 ? 'Low Risk' : this.calculateEnvScoreAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
         needleColor: 'gray',
@@ -57,12 +75,12 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
         rangeLabel: ['0', '100'],
         needleStartValue: 0,
       }
-    };
+    };    
     this.s_ScoreGauge = {
-      canvasWidth: this.canvaswidth,    
+      canvasWidth: this.canvaswidth,
       needleValue: this.calculateSocialScoreAverage(),
-      centralLabel: '',    
-      name: 'Social : ' + this.calculateSocialScoreAverage().toString().substring(0, 2) + '/100',   
+      centralLabel: '',
+      name: 'Social : ' + this.calculateSocialScoreAverage().toString().substring(0, 2) + '/100',
       bottomLabel: this.calculateSocialScoreAverage() >= 75 ? 'Low Risk' : this.calculateSocialScoreAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -75,10 +93,10 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       }
     };
     this.g_ScoreGauge = {
-      canvasWidth: this.canvaswidth,    
-      needleValue: this.calculateGovScoreAverage(),     
-      centralLabel: '',    
-      name: 'Governance : ' + this.calculateGovScoreAverage().toString().substring(0, 2) + '/100',    
+      canvasWidth: this.canvaswidth,
+      needleValue: this.calculateGovScoreAverage(),
+      centralLabel: '',
+      name: 'Governance : ' + this.calculateGovScoreAverage().toString().substring(0, 2) + '/100',
       bottomLabel: this.calculateGovScoreAverage() >= 75 ? 'Low Risk' : this.calculateGovScoreAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -90,6 +108,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
         needleStartValue: 0,
       }
     };
+    //console.log(this.companyData);
   }
 
   calculateNetAverage(): number {
@@ -126,4 +145,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       this.companyData.esgFactorScores.governanceScore.transparencyAndReporting) / 7;
   }
 
+  ngOnDestroy() {
+    this.companyChangeSubs.unsubscribe();
+  }
 }

@@ -3,6 +3,7 @@ import { company } from '../../models/company';
 import { EsgDataService } from '../../service/esg-data.service';
 import { gaugeParameters } from '../../models/gaugeParameters';
 import { esgInputData } from '../../models/esgInputData';
+import { CommunicationService } from '../../service/communication.service';
 
 @Component({
   selector: 'app-compare-esg-gauge-details',
@@ -10,8 +11,7 @@ import { esgInputData } from '../../models/esgInputData';
   styleUrls: ['./compare-esg-gauge-details.component.css']
 })
 export class CompareEsgGaugeDetailsComponent implements OnInit {
-  @Input() companiesSelected: company[];
-  constructor(private esgDataService: EsgDataService) { }
+  constructor(private esgDataService: EsgDataService, private communicationService: CommunicationService) { }
   netScoreGaugeCompany1: gaugeParameters;
   netScoreGaugeCompany2: gaugeParameters;
   netScoreGaugeCompany3: gaugeParameters;
@@ -23,11 +23,48 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
   companyData3: esgInputData;
   canvaswidth: number = 275;
   needleupdatespeed: number = 2000;
+  companyChangeSubs: any;
   ngOnInit() {
-    // should come through @Input, remove hardcoding later
-    this.companyInput1 = this.esgDataService.getAllCompanies()[0];//this.companiesSelected[0]
-    this.companyInput2 = this.esgDataService.getAllCompanies()[1];//this.companiesSelected[1]
-    this.companyInput3 = this.esgDataService.getAllCompanies()[2];//this.companiesSelected[2]
+
+    this.companyChangeSubs = this.communicationService.changeEmitted$.subscribe(
+      message => {
+        var firm = message as company;
+        var sector = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === firm.companyId)[0].sector.sectorName;
+        switch (sector.toLowerCase()) {
+          case "pharma":
+            this.setData(0, 1, 2);
+            break;
+          case "software":
+            this.setData(3, 4, 5);
+            break;
+          case "manufacturing":
+            this.setData(6, 7, 8);
+            break;
+        }
+      });
+    this.setData(0, 1, 2); // pharma by default.
+  }
+
+  calculateNetAverage(firmData: esgInputData): number {
+    return (firmData.goalBasedScore.goal1 +
+      firmData.goalBasedScore.goal2 +
+      firmData.goalBasedScore.goal3 +
+      firmData.goalBasedScore.goal4 +
+      firmData.goalBasedScore.goal5 +
+      firmData.goalBasedScore.goal6 +
+      firmData.goalBasedScore.goal7 +
+      firmData.goalBasedScore.goal8 +
+      firmData.goalBasedScore.goal9 +
+      firmData.goalBasedScore.goal10 +
+      firmData.goalBasedScore.goal11 +
+      firmData.goalBasedScore.goal12) / 12;
+
+  }
+
+  setData(x: number, y: number, z: number) {
+    this.companyInput1 = this.esgDataService.getAllCompanies()[x];
+    this.companyInput2 = this.esgDataService.getAllCompanies()[y];
+    this.companyInput3 = this.esgDataService.getAllCompanies()[z];
 
     this.companyData1 = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput1.companyId)[0];
     this.companyData2 = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput2.companyId)[0];
@@ -52,7 +89,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
         rangeLabel: ['0', '100'],
         needleStartValue: 0,
       }
-    };    
+    };
     this.netScoreGaugeCompany2 = {
       canvasWidth: this.canvaswidth,
       needleValue: score2,
@@ -86,21 +123,4 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       }
     };
   }
-
-  calculateNetAverage(firmData: esgInputData): number {
-    return (firmData.goalBasedScore.goal1 +
-      firmData.goalBasedScore.goal2 +
-      firmData.goalBasedScore.goal3 +
-      firmData.goalBasedScore.goal4 +
-      firmData.goalBasedScore.goal5 +
-      firmData.goalBasedScore.goal6 +
-      firmData.goalBasedScore.goal7 +
-      firmData.goalBasedScore.goal8 +
-      firmData.goalBasedScore.goal9 +
-      firmData.goalBasedScore.goal10 +
-      firmData.goalBasedScore.goal11 +
-      firmData.goalBasedScore.goal12) / 12;
-      
-  }
-
 }

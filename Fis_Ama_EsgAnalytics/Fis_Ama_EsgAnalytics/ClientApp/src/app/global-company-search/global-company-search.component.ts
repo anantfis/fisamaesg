@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { EsgDataService } from '../service/esg-data.service';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { company } from '../models/company';
+import { CommunicationService } from '../service/communication.service';
 
 @Component({
   selector: 'app-global-company-search',
@@ -11,15 +12,20 @@ import { company } from '../models/company';
   styleUrls: ['./global-company-search.component.css']
 })
 export class GlobalCompanySearchComponent implements OnInit {
-
-  constructor(private esgDataService: EsgDataService) { }
+  @Output() companySelected = new EventEmitter<company>();   
+  companyNameSelected: string = 'Lupin'; // first time select first company in Array : Lupin
+  constructor(private esgDataService: EsgDataService,
+              private communicationService: CommunicationService) { }
   myControl = new FormControl();
-  companies = this.esgDataService.getAllCompanies();
-  filteredOptions: Observable<company[]>;
-  companySelected: company = this.esgDataService.getAllCompanies()[0];
+
+  // filter airline sector companies.
+  companies = this.esgDataService.getAllCompanies().filter(x => (x.companyId !== 10 && x.companyId !== 11 && x.companyId !== 12));
+  filteredOptions: Observable<company[]>;  
 
   ngOnInit() {
-    this.companySelected = this.esgDataService.getAllCompanies()[0];
+    this.companySelected.emit(this.GetCompanyDetailsByName(this.companyNameSelected));
+    this.communicationService.emitChange(this.GetCompanyDetailsByName(this.companyNameSelected));
+
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -27,10 +33,18 @@ export class GlobalCompanySearchComponent implements OnInit {
       );
   }
 
+  optionselected($event) {
+    this.companyNameSelected = $event.option.value;
+    this.companySelected.emit(this.GetCompanyDetailsByName(this.companyNameSelected));
+    this.communicationService.emitChange(this.GetCompanyDetailsByName(this.companyNameSelected));    
+  }
+
   private _filter(value: string): company[] {   
     const filterValue = value.toLowerCase();
     return this.companies.filter(option => option.companyName.toLowerCase().includes(filterValue));
   }
-  
 
+  private GetCompanyDetailsByName(name: string ): company {
+    return this.esgDataService.getAllCompanies().filter(x => x.companyName === name)[0];
+  }
 }

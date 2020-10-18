@@ -3,18 +3,19 @@
     <div fxLayoutAlign="center center" class="box-container">
       <mat-form-field class="search-field-full-width" appearance="outline">
         <mat-label>Search Companies</mat-label>
-        <input type="text"               
+        <input type="text" matInput
                aria-label="Number"
-               matInput
+               [(ngModel)]="companyNameSelected"
                [formControl]="myControl"
                [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="optionselected($event)">
           <mat-option *ngFor="let company of companies" [value]="company.companyName">
             {{company.companyName}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </div>
+    <!--<label>{{companyNameSelected}}</label>-->
     <router-outlet></router-outlet>
   </mat-card>
 </form>

@@ -1,6 +1,6 @@
 <mat-card class="full-height">
-  <mat-card-title>Data Persisted</mat-card-title>
-  <mat-card-subtitle>In Local Storage</mat-card-subtitle>
+  <!--<mat-card-title>Data Persisted</mat-card-title>
+  <mat-card-subtitle>In Local Storage</mat-card-subtitle>-->
   <mat-sidenav-container hasBackdrop="false" class="full-height">
     <mat-sidenav-content fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="start">
       <mat-card *ngFor="let data of savedData" class="full-height company-data-item">
@@ -20,9 +20,7 @@
       </mat-card>
     </mat-sidenav-content>
     <mat-sidenav mode="push" position="start" #sidenavDetails style="width:100%;" fxLayout="column">
-      <!--<h4>Sidenav Details here</h4>
-      <button (click)="sidenavDetails.close()">Close</button>-->
-      <button (click)="sidenavDetails.close()">Back</button>
+      <button mat-button class="btn btn-primary" (click)="sidenavDetails.close()">Back</button>     
       <app-company-data-edit [companyDetailsData]="selectedCompany" (onSaveData)="onSaveData($event)"></app-company-data-edit>
     </mat-sidenav>
   </mat-sidenav-container>  

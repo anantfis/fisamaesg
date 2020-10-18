@@ -10,18 +10,14 @@ export class SectorCompanyParameterBaseData {
     e_sector_region_score: number[],
     s_sector_region_score: number[],
     g_sector_region_score: number[],
-    manufacturingParametersRating: ParametersRating[],
-    pharmaParametersRatings: ParametersRating[],
-    softwareParametersRatings: ParametersRating[]) {
+    parametersRatings: ParametersRating[]) {
     sector: sector;
     company: company;
     totalEsgScore: totalEsgScore;
     e_sector_region_score: e_sector_region_score;
     s_sector_region_score: s_sector_region_score;
     g_sector_region_score: g_sector_region_score;
-    manufacturingParametersRating: manufacturingParametersRating;
-    pharmaParametersRatings: pharmaParametersRatings;
-    softwareParametersRatings: softwareParametersRatings;
+    parametersRating: parametersRatings;   
   }
   sector: sector;
   company: company;
@@ -29,9 +25,7 @@ export class SectorCompanyParameterBaseData {
   e_sector_region_score: number[];
   s_sector_region_score: number[];
   g_sector_region_score: number[];
-  parametersRating: ParametersRating[];
-  //pharmaParametersRatings: ParametersRating[];
-  //softwareParametersRatings: ParametersRating[];
+  parametersRating: ParametersRating[];  
 }
 
 export class ParametersRating {
