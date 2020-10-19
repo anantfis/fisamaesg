@@ -7,7 +7,7 @@
     <mat-card style="background-color:seashell;width:90%">
       <mat-card-title style="color:blue;">Edit Data For : {{companyDetailsData.company.companyName | uppercase}}</mat-card-title>
       <!--<mat-card-subtitle style="color:gray; font-weight:bold;">(MSCI/CSRHUB/S&P500)</mat-card-subtitle>-->
-      <mat-card-content *ngIf="companyDetailsData.sector.sectorId === 1">      
+      <mat-card-content *ngIf="companyDetailsData.sector.sectorId === 1">
         <table class="table table-striped table-bordered">
           <tbody>
             <tr style="background-color:cadetblue; font-size:15px;">
@@ -32,6 +32,93 @@
                                             [ratingValue]="getRatingValue(headElements[3],parameter.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
                                             (valueChanged)="updateChangedValue(headElements[2],parameter.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)">
                 </app-rating-score-drop-down>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle;color:gray;">
+                Input E-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle;color:gray;">
+                Input S-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle;color:gray; ">
+                Input G-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
               </td>
             </tr>
           </tbody>
@@ -64,6 +151,93 @@
                 </app-rating-score-drop-down>
               </td>
             </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle;color:gray; ">
+                Input E-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle;color:gray; ">
+                Input S-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle;color:gray; ">
+                Input G-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
+              </td>
+            </tr>
           </tbody>
         </table>
       </mat-card-content>
@@ -92,6 +266,93 @@
                                             [ratingValue]="getRatingValue(headElements[3],parameter.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating)"
                                             (valueChanged)="updateChangedValue(headElements[2],parameter.sdg_Goal_Description.sdgGoalDescriptionName,companyDetailsData.parametersRating,$event)">
                 </app-rating-score-drop-down>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle;color:gray; ">
+                Input E-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="e-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.e_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle; color:gray; ">
+                Input S-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="s-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.s_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight:bold;vertical-align:middle;color:gray; ">
+                Input G-Score
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-0" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[0]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-1" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[1]">
+                  </mat-form-field>
+                </form>
+              </td>
+              <td>
+                <form>
+                  <mat-form-field>
+                    <mat-label>Score</mat-label>
+                    <input matInput type="number" name="g-score-2" placeholder="Enter Value" [(ngModel)]="companyDetailsData.g_sector_region_score[2]">
+                  </mat-form-field>
+                </form>
               </td>
             </tr>
           </tbody>
