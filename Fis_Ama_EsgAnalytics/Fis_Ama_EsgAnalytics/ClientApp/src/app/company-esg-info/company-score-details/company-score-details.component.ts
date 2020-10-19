@@ -21,7 +21,7 @@ export class CompanyScoreDetailsComponent implements OnInit {
         this.companySelected = message as company;        
         this.companyData = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companySelected.companyId)[0];
       });
-    this.companySelected = this.esgDataService.getAllCompanies()[0]; // first time select first company in Array : Lupin
+    this.companySelected = this.esgDataService.getAllCompanies()[0]; // first time select first company in Array : abbott
     this.companyData = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companySelected.companyId)[0];
   }
 

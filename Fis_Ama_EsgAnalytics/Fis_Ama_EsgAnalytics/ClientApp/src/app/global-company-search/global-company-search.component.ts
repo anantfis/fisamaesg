@@ -13,7 +13,7 @@ import { CommunicationService } from '../service/communication.service';
 })
 export class GlobalCompanySearchComponent implements OnInit {
   @Output() companySelected = new EventEmitter<company>();   
-  companyNameSelected: string = 'Lupin'; // first time select first company in Array : Lupin
+  companyNameSelected: string = 'abbott'; // first time select first company in Array : abbott
   constructor(private esgDataService: EsgDataService,
               private communicationService: CommunicationService) { }
   myControl = new FormControl();

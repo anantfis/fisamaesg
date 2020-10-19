@@ -20,15 +20,15 @@ export class EsgDataService {
   constructor() { }
 
   private companies: company[] = [
-    { "companyId": 1, "companyName": "Lupin", storageName: companyNameInStorage.lupin },
-    { "companyId": 2, "companyName": "Sun Pharma", storageName: companyNameInStorage.sun },
+    { "companyId": 1, "companyName": "Abbott", storageName: companyNameInStorage.abbott },
+    { "companyId": 2, "companyName": "Novartis", storageName: companyNameInStorage.novartis },
     { "companyId": 3, "companyName": "Cipla", storageName: companyNameInStorage.cipla },
-    { "companyId": 4, "companyName": "Infosys", storageName: companyNameInStorage.infosys },
+    { "companyId": 4, "companyName": "Apple", storageName: companyNameInStorage.apple },
     { "companyId": 5, "companyName": "Accenture", storageName: companyNameInStorage.accenture },
-    { "companyId": 6, "companyName": "Cognizant", storageName: companyNameInStorage.cognizant },
-    { "companyId": 7, "companyName": "ITC", storageName: companyNameInStorage.itc },
-    { "companyId": 8, "companyName": "P&G", storageName: companyNameInStorage.png },
-    { "companyId": 9, "companyName": "HUL", storageName: companyNameInStorage.hul },
+    { "companyId": 6, "companyName": "Amazon", storageName: companyNameInStorage.amazon },
+    { "companyId": 7, "companyName": "Tesla", storageName: companyNameInStorage.tesla },
+    { "companyId": 8, "companyName": "Ford", storageName: companyNameInStorage.ford },
+    { "companyId": 9, "companyName": "Coca Cola", storageName: companyNameInStorage.cocacola },
     { "companyId": 10, "companyName": "GoAir", storageName: companyNameInStorage.goair },
     { "companyId": 11, "companyName": "AirAsia", storageName: companyNameInStorage.airasia },
     { "companyId": 12, "companyName": "Vistara", storageName: companyNameInStorage.vistara },
@@ -40,10 +40,15 @@ export class EsgDataService {
     { "providerId": 4, "providerName": "Sustainalytics" },
   ];
   private esgScores: esgScore[] = [
-    { "esgScoreId": 1, "esgScoreDescription": "Strong", "esgScoreValue": 10 },
-    { "esgScoreId": 2, "esgScoreDescription": "Good", "esgScoreValue": 7.5 },
-    { "esgScoreId": 3, "esgScoreDescription": "Bad", "esgScoreValue": 5 },
-    { "esgScoreId": 4, "esgScoreDescription": "-NA-", "esgScoreValue": 0 },
+    { "esgScoreId": 1, "esgScoreDescription": "Rating : Strong", "esgScoreValue": 10 },
+    { "esgScoreId": 2, "esgScoreDescription": "Rating : Good", "esgScoreValue": 7.5 },
+    { "esgScoreId": 3, "esgScoreDescription": "Rating : Weak", "esgScoreValue": 5.0 },
+    { "esgScoreId": 4, "esgScoreDescription": "Rating : Bad", "esgScoreValue": 2.5 },
+    { "esgScoreId": 5, "esgScoreDescription": "Rating : -NA-", "esgScoreValue": 0 },
+    { "esgScoreId": 6, "esgScoreDescription": "Score  : 76 - 100", "esgScoreValue": 10 },
+    { "esgScoreId": 7, "esgScoreDescription": "Score  : 51 - 75", "esgScoreValue": 7.5 },
+    { "esgScoreId": 8, "esgScoreDescription": "Score  : 26 - 50", "esgScoreValue": 5.0 },
+    { "esgScoreId": 9, "esgScoreDescription": "Score  : 00 - 25", "esgScoreValue": 2.5 },
   ];
   private preparednessScores: preparednessScore[] = [
     { "preparednessScoreId": 1, "preparednessScoreName": "Excellent", "preparednessScoreValue": 3 },
@@ -869,7 +874,7 @@ export class EsgDataService {
   }
   private esgData: esgInputData[] = [this.esgData1, this.esgData2, this.esgData3, this.esgData4, this.esgData5, this.esgData6, this.esgData7, this.esgData8, this.esgData9, this.esgData10, this.esgData11, this.esgData12];
 
-  private SectorCompanyParameterBaseData_Lupin: SectorCompanyParameterBaseData = {
+  private SectorCompanyParameterBaseData_abbott: SectorCompanyParameterBaseData = {
     sector: this.sectors[0],
     company: this.companies[0],
     totalEsgScore: 0,
@@ -915,7 +920,7 @@ export class EsgDataService {
 
     ],
   };
-  private SectorCompanyParameterBaseData_sun: SectorCompanyParameterBaseData = {
+  private SectorCompanyParameterBaseData_novartis: SectorCompanyParameterBaseData = {
     sector: this.sectors[0],
     company: this.companies[1],
     totalEsgScore: 0,
@@ -1006,7 +1011,7 @@ export class EsgDataService {
 
     ],
   };
-  private SectorCompanyParameterBaseData_infosys: SectorCompanyParameterBaseData = {
+  private SectorCompanyParameterBaseData_apple: SectorCompanyParameterBaseData = {
     sector: this.sectors[1],
     company: this.companies[3],
     totalEsgScore: 0,
@@ -1079,7 +1084,7 @@ export class EsgDataService {
       { sectorGoalWeightage: this.sectorGoalWeightage[29], esgScore: this.esgScores[0], provider: this.providers[2] },
     ]
   };
-  private SectorCompanyParameterBaseData_cognizant: SectorCompanyParameterBaseData = {
+  private SectorCompanyParameterBaseData_amazon: SectorCompanyParameterBaseData = {
     sector: this.sectors[1],
     company: this.companies[5],
     totalEsgScore: 0,
@@ -1115,7 +1120,7 @@ export class EsgDataService {
       { sectorGoalWeightage: this.sectorGoalWeightage[29], esgScore: this.esgScores[0], provider: this.providers[2] },
     ]
   };
-  private SectorCompanyParameterBaseData_itc: SectorCompanyParameterBaseData = {
+  private SectorCompanyParameterBaseData_tesla: SectorCompanyParameterBaseData = {
     sector: this.sectors[4],
     company: this.companies[6],
     totalEsgScore: 0,
@@ -1160,7 +1165,7 @@ export class EsgDataService {
       { sectorGoalWeightage: this.sectorGoalWeightage[10], esgScore: this.esgScores[0], provider: this.providers[2] },
     ],
   };
-  private SectorCompanyParameterBaseData_png: SectorCompanyParameterBaseData = {
+  private SectorCompanyParameterBaseData_ford: SectorCompanyParameterBaseData = {
     sector: this.sectors[4],
     company: this.companies[7],
     totalEsgScore: 0,
@@ -1205,7 +1210,7 @@ export class EsgDataService {
       { sectorGoalWeightage: this.sectorGoalWeightage[10], esgScore: this.esgScores[0], provider: this.providers[2] },
     ],
   };
-  private SectorCompanyParameterBaseData_hul: SectorCompanyParameterBaseData = {
+  private SectorCompanyParameterBaseData_cocacola: SectorCompanyParameterBaseData = {
     sector: this.sectors[4],
     company: this.companies[8],
     totalEsgScore: 0,
@@ -1253,68 +1258,68 @@ export class EsgDataService {
 
   public getSectorCompanyParameterBaseDataByName(name: string): SectorCompanyParameterBaseData {
     switch (name.toLowerCase()) {
-      case "lupin":
-        return this.SectorCompanyParameterBaseData_Lupin;
+      case "abbott":
+        return this.SectorCompanyParameterBaseData_abbott;
         break;
-      case 'sun':
-        return this.SectorCompanyParameterBaseData_sun;
+      case 'novartis':
+        return this.SectorCompanyParameterBaseData_novartis;
         break;
       case 'cipla':
         return this.SectorCompanyParameterBaseData_cipla;
         break;
-      case 'infosys':
-        return this.SectorCompanyParameterBaseData_infosys;
+      case 'apple':
+        return this.SectorCompanyParameterBaseData_apple;
         break;
       case 'accenture':
         return this.SectorCompanyParameterBaseData_accenture;
         break;
-      case 'cognizant':
-        return this.SectorCompanyParameterBaseData_cognizant;
+      case 'amazon':
+        return this.SectorCompanyParameterBaseData_amazon;
         break;
-      case 'png':
-        return this.SectorCompanyParameterBaseData_png;
+      case 'ford':
+        return this.SectorCompanyParameterBaseData_ford;
         break;
-      case 'itc':
-        return this.SectorCompanyParameterBaseData_itc;
+      case 'tesla':
+        return this.SectorCompanyParameterBaseData_tesla;
         break;
-      case 'hul':
-        return this.SectorCompanyParameterBaseData_hul;
+      case 'cocacola':
+        return this.SectorCompanyParameterBaseData_cocacola;
         break;
     }
   }
 
   public getAllSectorCompanyParameterBaseDataByName(): SectorCompanyParameterBaseData[] {
-    return [this.SectorCompanyParameterBaseData_Lupin,
-    this.SectorCompanyParameterBaseData_sun,
+    return [this.SectorCompanyParameterBaseData_abbott,
+    this.SectorCompanyParameterBaseData_novartis,
     this.SectorCompanyParameterBaseData_cipla,
-    this.SectorCompanyParameterBaseData_infosys,
+    this.SectorCompanyParameterBaseData_apple,
     this.SectorCompanyParameterBaseData_accenture,
-    this.SectorCompanyParameterBaseData_cognizant,
-    this.SectorCompanyParameterBaseData_itc,
-    this.SectorCompanyParameterBaseData_png,
-    this.SectorCompanyParameterBaseData_hul
+    this.SectorCompanyParameterBaseData_amazon,
+    this.SectorCompanyParameterBaseData_tesla,
+    this.SectorCompanyParameterBaseData_ford,
+      this.SectorCompanyParameterBaseData_cocacola
     ]
   }
 
   public saveAllDataToLocalStorageFirstTime() {
-    if (isNullOrUndefined(localStorage.getItem('companyData_lupin')))
-      localStorage.setItem('companyData_lupin', JSON.stringify(this.SectorCompanyParameterBaseData_Lupin));
-    if (isNullOrUndefined(localStorage.getItem('companyData_sun')))
-      localStorage.setItem('companyData_sun', JSON.stringify(this.SectorCompanyParameterBaseData_sun));
+    if (isNullOrUndefined(localStorage.getItem('companyData_abbott')))
+      localStorage.setItem('companyData_abbott', JSON.stringify(this.SectorCompanyParameterBaseData_abbott));
+    if (isNullOrUndefined(localStorage.getItem('companyData_novartis')))
+      localStorage.setItem('companyData_novartis', JSON.stringify(this.SectorCompanyParameterBaseData_novartis));
     if (isNullOrUndefined(localStorage.getItem('companyData_cipla')))
       localStorage.setItem('companyData_cipla', JSON.stringify(this.SectorCompanyParameterBaseData_cipla));
-    if (isNullOrUndefined(localStorage.getItem('companyData_infosys')))
-      localStorage.setItem('companyData_infosys', JSON.stringify(this.SectorCompanyParameterBaseData_infosys));
+    if (isNullOrUndefined(localStorage.getItem('companyData_apple')))
+      localStorage.setItem('companyData_apple', JSON.stringify(this.SectorCompanyParameterBaseData_apple));
     if (isNullOrUndefined(localStorage.getItem('companyData_accenture')))
       localStorage.setItem('companyData_accenture', JSON.stringify(this.SectorCompanyParameterBaseData_accenture));
-    if (isNullOrUndefined(localStorage.getItem('companyData_cognizant')))
-      localStorage.setItem('companyData_cognizant', JSON.stringify(this.SectorCompanyParameterBaseData_cognizant));
-    if (isNullOrUndefined(localStorage.getItem('companyData_png')))
-      localStorage.setItem('companyData_png', JSON.stringify(this.SectorCompanyParameterBaseData_png));
-    if (isNullOrUndefined(localStorage.getItem('companyData_itc')))
-      localStorage.setItem('companyData_itc', JSON.stringify(this.SectorCompanyParameterBaseData_itc));
-    if (isNullOrUndefined(localStorage.getItem('companyData_hul')))
-      localStorage.setItem('companyData_hul', JSON.stringify(this.SectorCompanyParameterBaseData_hul));
+    if (isNullOrUndefined(localStorage.getItem('companyData_amazon')))
+      localStorage.setItem('companyData_amazon', JSON.stringify(this.SectorCompanyParameterBaseData_amazon));
+    if (isNullOrUndefined(localStorage.getItem('companyData_ford')))
+      localStorage.setItem('companyData_ford', JSON.stringify(this.SectorCompanyParameterBaseData_ford));
+    if (isNullOrUndefined(localStorage.getItem('companyData_tesla')))
+      localStorage.setItem('companyData_tesla', JSON.stringify(this.SectorCompanyParameterBaseData_tesla));
+    if (isNullOrUndefined(localStorage.getItem('companyData_cocacola')))
+      localStorage.setItem('companyData_cocacola', JSON.stringify(this.SectorCompanyParameterBaseData_cocacola));
   }
 
   public getAllCompanies(): company[] {
@@ -1363,5 +1368,27 @@ export class EsgDataService {
 
   public getAllpreparednessOpinions(): preparednessOpinion[] {
     return this.preparednessOpinions;
+  }
+
+  public transformInputDataToDisplayModel(input: SectorCompanyParameterBaseData): esgInputData {
+    let displayModel: esgInputData = new esgInputData();
+    displayModel.company = input.company;
+    displayModel.sector = input.sector;
+    displayModel.financialYear = '';
+    displayModel.financialQuarter = '';
+    displayModel.reportingPeriod = '';
+    displayModel.reportingDate = null;
+    displayModel.provider = new provider();
+    ////displayModel.esgFactorScores = extractEsgFactorSCore(input);
+    ////displayModel.goalBasedScore = extractGoalBasedScore(input);
+    return displayModel;
+  }
+
+  private extractEsgFactorSCore(input: SectorCompanyParameterBaseData): any {
+
+  }
+
+  private extractGoalBasedScore(input: SectorCompanyParameterBaseData): any {
+
   }
 }

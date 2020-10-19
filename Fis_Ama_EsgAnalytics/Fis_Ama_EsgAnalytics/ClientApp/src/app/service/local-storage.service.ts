@@ -12,40 +12,40 @@ export class LocalStorageService {
   public getCompanyDataFromLocalStorageByName(storageName: companyNameInStorage): SectorCompanyParameterBaseData {
     var data: SectorCompanyParameterBaseData;
     switch (storageName) {
-      case companyNameInStorage.lupin:
-        data = JSON.parse(localStorage.getItem('companyData_lupin')) as SectorCompanyParameterBaseData;
+      case companyNameInStorage.abbott:
+        data = JSON.parse(localStorage.getItem('companyData_abbott')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case companyNameInStorage.sun:
-        data = JSON.parse(localStorage.getItem('companyData_sun')) as SectorCompanyParameterBaseData;
+      case companyNameInStorage.novartis:
+        data = JSON.parse(localStorage.getItem('companyData_novartis')) as SectorCompanyParameterBaseData;
         return data;
         break;
       case companyNameInStorage.cipla:
         data = JSON.parse(localStorage.getItem('companyData_cipla')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case companyNameInStorage.infosys:
-        data = JSON.parse(localStorage.getItem('companyData_infosys')) as SectorCompanyParameterBaseData;
+      case companyNameInStorage.apple:
+        data = JSON.parse(localStorage.getItem('companyData_apple')) as SectorCompanyParameterBaseData;
         return data;
         break;
       case companyNameInStorage.accenture:
         data = JSON.parse(localStorage.getItem('companyData_accenture')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case companyNameInStorage.cognizant:
-        data = JSON.parse(localStorage.getItem('companyData_cognizant')) as SectorCompanyParameterBaseData;
+      case companyNameInStorage.amazon:
+        data = JSON.parse(localStorage.getItem('companyData_amazon')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case companyNameInStorage.png:
-        data = JSON.parse(localStorage.getItem('companyData_png')) as SectorCompanyParameterBaseData;
+      case companyNameInStorage.ford:
+        data = JSON.parse(localStorage.getItem('companyData_ford')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case companyNameInStorage.itc:
-        data = JSON.parse(localStorage.getItem('companyData_itc')) as SectorCompanyParameterBaseData;
+      case companyNameInStorage.tesla:
+        data = JSON.parse(localStorage.getItem('companyData_tesla')) as SectorCompanyParameterBaseData;
         return data;
         break;
-      case companyNameInStorage.hul:
-        data = JSON.parse(localStorage.getItem('companyData_hul')) as SectorCompanyParameterBaseData;
+      case companyNameInStorage.cocacola:
+        data = JSON.parse(localStorage.getItem('companyData_cocacola')) as SectorCompanyParameterBaseData;
         return data;
         break;
     }
@@ -53,15 +53,15 @@ export class LocalStorageService {
 
   public getAllCompanyDataFromLocalStorage(): SectorCompanyParameterBaseData[] {
     var data: SectorCompanyParameterBaseData[]=[];
-    data.push(JSON.parse(localStorage.getItem('companyData_lupin')) as SectorCompanyParameterBaseData);
-    data.push(JSON.parse(localStorage.getItem('companyData_sun')) as SectorCompanyParameterBaseData);
+    data.push(JSON.parse(localStorage.getItem('companyData_abbott')) as SectorCompanyParameterBaseData);
+    data.push(JSON.parse(localStorage.getItem('companyData_novartis')) as SectorCompanyParameterBaseData);
     data.push(JSON.parse(localStorage.getItem('companyData_cipla')) as SectorCompanyParameterBaseData);
-    data.push(JSON.parse(localStorage.getItem('companyData_infosys')) as SectorCompanyParameterBaseData);
+    data.push(JSON.parse(localStorage.getItem('companyData_apple')) as SectorCompanyParameterBaseData);
     data.push(JSON.parse(localStorage.getItem('companyData_accenture')) as SectorCompanyParameterBaseData);
-    data.push(JSON.parse(localStorage.getItem('companyData_cognizant')) as SectorCompanyParameterBaseData);
-    data.push(JSON.parse(localStorage.getItem('companyData_png')) as SectorCompanyParameterBaseData);
-    data.push(JSON.parse(localStorage.getItem('companyData_itc')) as SectorCompanyParameterBaseData);
-    data.push(JSON.parse(localStorage.getItem('companyData_hul')) as SectorCompanyParameterBaseData);
+    data.push(JSON.parse(localStorage.getItem('companyData_amazon')) as SectorCompanyParameterBaseData);
+    data.push(JSON.parse(localStorage.getItem('companyData_ford')) as SectorCompanyParameterBaseData);
+    data.push(JSON.parse(localStorage.getItem('companyData_tesla')) as SectorCompanyParameterBaseData);
+    data.push(JSON.parse(localStorage.getItem('companyData_cocacola')) as SectorCompanyParameterBaseData);
     return data;
   }
 

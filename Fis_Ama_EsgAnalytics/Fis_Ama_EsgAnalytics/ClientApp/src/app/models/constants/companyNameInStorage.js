@@ -1,18 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.companyNameInStorage = void 0;
 var companyNameInStorage;
 (function (companyNameInStorage) {
-    companyNameInStorage["lupin"] = "companyData_lupin";
-    companyNameInStorage["sun"] = "companyData_sun";
+    companyNameInStorage["abbott"] = "companyData_abbott";
+    companyNameInStorage["novartis"] = "companyData_novartis";
     companyNameInStorage["cipla"] = "companyData_cipla";
-    companyNameInStorage["infosys"] = "companyData_infosys";
+    companyNameInStorage["apple"] = "companyData_apple";
     companyNameInStorage["accenture"] = "companyData_accenture";
-    companyNameInStorage["cognizant"] = "companyData_cognizant";
-    companyNameInStorage["png"] = "companyData_png";
-    companyNameInStorage["itc"] = "companyData_itc";
-    companyNameInStorage["hul"] = "companyData_hul";
+    companyNameInStorage["amazon"] = "companyData_amazon";
+    companyNameInStorage["ford"] = "companyData_ford";
+    companyNameInStorage["tesla"] = "companyData_tesla";
+    companyNameInStorage["cocacola"] = "companyData_cocacola";
     companyNameInStorage["goair"] = "companyData_goair";
     companyNameInStorage["airasia"] = "companyData_airasia";
     companyNameInStorage["vistara"] = "companyData_vistara";
 })(companyNameInStorage = exports.companyNameInStorage || (exports.companyNameInStorage = {}));
-//# sourceMappingURL=company.js.map
+//# sourceMappingURL=companyNameInStorage.js.map

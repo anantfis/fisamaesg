@@ -36,7 +36,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
         this.companySelected = message as company;
         this.setupData();
       });
-    this.companySelected = this.esgDataService.getAllCompanies()[0]; // first time select first company in Array : Lupin
+    this.companySelected = this.esgDataService.getAllCompanies()[0]; // first time select first company in Array : abbott
     this.setupData();
   }
 
