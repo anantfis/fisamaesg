@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { gaugeParameters } from '../models/gaugeParameters';
 
 @Component({
@@ -6,12 +6,16 @@ import { gaugeParameters } from '../models/gaugeParameters';
   templateUrl: './esg-gauge.component.html',
   styleUrls: ['./esg-gauge.component.css']
 })
-export class EsgGaugeComponent implements OnInit {
+export class EsgGaugeComponent implements OnInit, OnChanges {
   @Input() gaugeParams: gaugeParameters;
   guageParam: gaugeParameters;
   constructor() { }
 
   ngOnInit() {    
+    this.guageParam = this.gaugeParams;
+  }
+
+  ngOnChanges() {
     this.guageParam = this.gaugeParams;
   }
 
