@@ -47,7 +47,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: this.calculateNetAverage(),
       centralLabel: '',
-      name: 'ESG Score: (Id:' + this.companyData.company.companyId + ') = ' + this.calculateNetAverage().toString().substring(0, 2) + '/100',
+      name: 'ESG Score :' +  this.calculateNetAverage().toString().substring(0, 2) + '/100',
       bottomLabel: this.calculateNetAverage() >= 75 ? 'Low Risk' : this.calculateNetAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -58,8 +58,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
         rangeLabel: ['0', '100'],
         needleStartValue: 0,
       }
-    };
-    console.log(this.netScoreGauge);
+    };    
     this.e_ScoreGauge = {
       canvasWidth: this.canvaswidth,
       needleValue: this.calculateEnvScoreAverage(),
@@ -108,7 +107,6 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
         needleStartValue: 0,
       }
     };
-    //console.log(this.companyData);
   }
 
   calculateNetAverage(): number {

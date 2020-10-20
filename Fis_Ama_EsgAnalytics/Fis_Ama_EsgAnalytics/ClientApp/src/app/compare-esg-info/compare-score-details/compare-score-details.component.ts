@@ -66,8 +66,6 @@ export class CompareScoreDetailsComponent implements OnInit {
     this.companyData1 = this.esgDataService.getAllEsgData().filter(a => a.company.companyId === this.companyInput1.companyId)[0];
     this.companyData2 = this.esgDataService.getAllEsgData().filter(a => a.company.companyId === this.companyInput2.companyId)[0];
     this.companyData3 = this.esgDataService.getAllEsgData().filter(a => a.company.companyId === this.companyInput3.companyId)[0];
-
-    console.log(this.companyInput1, this.companyInput2, this.companyInput3)
   }
 
   ngOnDestroy() {
