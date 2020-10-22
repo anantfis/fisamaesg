@@ -4,6 +4,7 @@ import { EsgDataService } from '../../service/esg-data.service';
 import { gaugeParameters } from '../../models/gaugeParameters';
 import { esgInputData } from '../../models/esgInputData';
 import { CommunicationService } from '../../service/communication.service';
+import { LocalStorageService } from '../../service/local-storage.service';
 
 @Component({
   selector: 'app-compare-esg-gauge-details',
@@ -11,7 +12,9 @@ import { CommunicationService } from '../../service/communication.service';
   styleUrls: ['./compare-esg-gauge-details.component.css']
 })
 export class CompareEsgGaugeDetailsComponent implements OnInit {
-  constructor(private esgDataService: EsgDataService, private communicationService: CommunicationService) { }
+  constructor(private esgDataService: EsgDataService,
+    private communicationService: CommunicationService,
+    private localStorageService: LocalStorageService) { }
   netScoreGaugeCompany1: gaugeParameters;
   netScoreGaugeCompany2: gaugeParameters;
   netScoreGaugeCompany3: gaugeParameters;
@@ -25,7 +28,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
   needleupdatespeed: number = 2000;
   companyChangeSubs: any;
   ngOnInit() {
-
+    //subscription.
     this.companyChangeSubs = this.communicationService.changeEmitted$.subscribe(
       message => {
         var firm = message as company;
@@ -42,23 +45,50 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
             break;
         }
       });
-    this.setData(0, 1, 2); // pharma by default.
+    // pharma by default.
+    this.setData(0, 1, 2); 
   }
 
   calculateNetAverage(firmData: esgInputData): number {
-    return (firmData.goalBasedScore.goal1 +
-      firmData.goalBasedScore.goal2 +
-      firmData.goalBasedScore.goal3 +
-      firmData.goalBasedScore.goal4 +
-      firmData.goalBasedScore.goal5 +
-      firmData.goalBasedScore.goal6 +
-      firmData.goalBasedScore.goal7 +
-      firmData.goalBasedScore.goal8 +
-      firmData.goalBasedScore.goal9 +
-      firmData.goalBasedScore.goal10 +
-      firmData.goalBasedScore.goal11 +
-      firmData.goalBasedScore.goal12) / 12;
-
+    // goals - 11 -> Pharma/Manufacturing, 8->S/W
+    let goals: number = firmData.sector.sectorId == 1 ? 11 : firmData.sector.sectorId == 2 ? 8 : 11;
+    let sum = 0;
+    if (!isNaN(firmData.goalBasedScore.goal1))
+      sum = sum + firmData.goalBasedScore.goal1;
+    if (!isNaN(firmData.goalBasedScore.goal2))
+      sum = sum + firmData.goalBasedScore.goal2;
+    if (!isNaN(firmData.goalBasedScore.goal3))
+      sum = sum + firmData.goalBasedScore.goal3;
+    if (!isNaN(firmData.goalBasedScore.goal4))
+      sum = sum + firmData.goalBasedScore.goal4;
+    if (!isNaN(firmData.goalBasedScore.goal5))
+      sum = sum + firmData.goalBasedScore.goal5;
+    if (!isNaN(firmData.goalBasedScore.goal6))
+      sum = sum + firmData.goalBasedScore.goal6;
+    if (!isNaN(firmData.goalBasedScore.goal7))
+      sum = sum + firmData.goalBasedScore.goal7;
+    if (!isNaN(firmData.goalBasedScore.goal8))
+      sum = sum + firmData.goalBasedScore.goal8;
+    if (!isNaN(firmData.goalBasedScore.goal9))
+      sum = sum + firmData.goalBasedScore.goal9;
+    if (!isNaN(firmData.goalBasedScore.goal10))
+      sum = sum + firmData.goalBasedScore.goal10;
+    if (!isNaN(firmData.goalBasedScore.goal11))
+      sum = sum + firmData.goalBasedScore.goal11;
+    if (!isNaN(firmData.goalBasedScore.goal12))
+      sum = sum + firmData.goalBasedScore.goal12;
+    if (!isNaN(firmData.goalBasedScore.goal13))
+      sum = sum + firmData.goalBasedScore.goal13;
+    if (!isNaN(firmData.goalBasedScore.goal14))
+      sum = sum + firmData.goalBasedScore.goal14;
+    if (!isNaN(firmData.goalBasedScore.goal15))
+      sum = sum + firmData.goalBasedScore.goal15;
+    if (!isNaN(firmData.goalBasedScore.goal16))
+      sum = sum + firmData.goalBasedScore.goal16;
+    if (!isNaN(firmData.goalBasedScore.goal17))
+      sum = sum + firmData.goalBasedScore.goal17;
+    //return (sum / goals);
+    return sum*10;
   }
 
   setData(x: number, y: number, z: number) {
@@ -66,9 +96,17 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
     this.companyInput2 = this.esgDataService.getAllCompanies()[y];
     this.companyInput3 = this.esgDataService.getAllCompanies()[z];
 
-    this.companyData1 = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput1.companyId)[0];
-    this.companyData2 = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput2.companyId)[0];
-    this.companyData3 = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companyInput3.companyId)[0];
+    this.companyData1 = this.esgDataService.transformInputDataToDisplayModel(
+      this.localStorageService.getCompanyDataFromLocalStorageById(
+        this.companyInput1.companyId));
+
+    this.companyData2 = this.esgDataService.transformInputDataToDisplayModel(
+      this.localStorageService.getCompanyDataFromLocalStorageById(
+        this.companyInput2.companyId));
+
+    this.companyData3 = this.esgDataService.transformInputDataToDisplayModel(
+      this.localStorageService.getCompanyDataFromLocalStorageById(
+        this.companyInput3.companyId));
 
     let score1 = this.calculateNetAverage(this.companyData1);
     let score2 = this.calculateNetAverage(this.companyData2);

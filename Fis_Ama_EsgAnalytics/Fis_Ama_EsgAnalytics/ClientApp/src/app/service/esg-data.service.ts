@@ -7,9 +7,10 @@ import { esgScore, preparednessScore, preparednessOpinion } from '../models/scor
 import { esgCategory } from '../models/esgcategory';
 import { sdgGoal, sdgGoalDescription } from '../models/sdgGoals';
 import { esgParameter } from '../models/esgParameter';
-import { SectorCompanyParameterBaseData } from '../models/sector-company-basedata';
+import { SectorCompanyParameterBaseData, ParametersRating } from '../models/sector-company-basedata';
 import { isNullOrUndefined } from 'util';
 import { companyNameInStorage } from '../models/constants/companyNameInStorage';
+import { goalBasedScore } from '../models/goalBasedScore';
 
 @Injectable({
   providedIn: 'root'
@@ -212,667 +213,6 @@ export class EsgDataService {
 
   ];
 
-  private esgData1: esgInputData = {
-    sector: this.sectors[0],
-    provider: this.providers[0],
-    company: this.companies[0],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData2: esgInputData = {
-    sector: this.sectors[0],
-    provider: this.providers[0],
-    company: this.companies[1],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 10,
-        environmentPolicyAndReporting: 10,
-        resourceManagement: 10,
-        greenhouseGases: 10,
-        waterResources: 10,
-        landUsage: 10,
-        wasteManagement: 10
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData3: esgInputData = {
-    sector: this.sectors[0],
-    provider: this.providers[0],
-    company: this.companies[2],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData4: esgInputData = {
-    sector: this.sectors[1],
-    provider: this.providers[0],
-    company: this.companies[3],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData5: esgInputData = {
-    sector: this.sectors[1],
-    provider: this.providers[0],
-    company: this.companies[4],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData6: esgInputData = {
-    sector: this.sectors[1],
-    provider: this.providers[0],
-    company: this.companies[5],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData7: esgInputData = {
-    sector: this.sectors[4],
-    provider: this.providers[0],
-    company: this.companies[6],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData8: esgInputData = {
-    sector: this.sectors[4],
-    provider: this.providers[0],
-    company: this.companies[7],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData9: esgInputData = {
-    sector: this.sectors[4],
-    provider: this.providers[0],
-    company: this.companies[8],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData10: esgInputData = {
-    sector: this.sectors[3],
-    provider: this.providers[0],
-    company: this.companies[9],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData11: esgInputData = {
-    sector: this.sectors[3],
-    provider: this.providers[0],
-    company: this.companies[10],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData12: esgInputData = {
-    sector: this.sectors[3],
-    provider: this.providers[0],
-    company: this.companies[11],
-    esgFactorScores: {
-      environmentalScore: {
-        energyAndClimateChange: 66,
-        environmentPolicyAndReporting: 62,
-        resourceManagement: 67,
-        greenhouseGases: 68,
-        waterResources: 65,
-        landUsage: 64,
-        wasteManagement: 62
-      },
-      socialScore: {
-        safeManagement: 72,
-        workforceDiversity: 75,
-        customerEngagement: 78,
-        communities: 80,
-        humanRightAndSupplyChain: 74
-      },
-      governanceScore: {
-        board: 90,
-        transparencyAndReporting: 92,
-        leadershipEthics: 94,
-        structureAndOversights: 96,
-        codeAndValues: 98,
-        cyberrisksAndSystems: 91,
-        generalFactors: 93
-      }
-    },
-    goalBasedScore: {
-      goal1: 68,
-      goal2: 69,
-      goal3: 74,
-      goal4: 76,
-      goal5: 80,
-      goal6: 85,
-      goal7: 92,
-      goal8: 96,
-      goal9: 45,
-      goal10: 56,
-      goal11: 61,
-      goal12: 81,
-      goal13: 82,
-      goal14: 83,
-      goal15: 84,
-      goal16: 85,
-      goal17: 86
-    },
-    reportingDate: null,
-    reportingPeriod: '2020 Q3',
-    financialYear: 'FY20-21',
-    financialQuarter: 'Q3',
-  }
-  private esgData: esgInputData[] = [this.esgData1, this.esgData2, this.esgData3, this.esgData4, this.esgData5, this.esgData6, this.esgData7, this.esgData8, this.esgData9, this.esgData10, this.esgData11, this.esgData12];
 
   private SectorCompanyParameterBaseData_abbott: SectorCompanyParameterBaseData = {
     sector: this.sectors[0],
@@ -1256,6 +596,395 @@ export class EsgDataService {
     ],
   };
 
+  private esgData_abbott: esgInputData = {
+    sector: this.sectors[0],
+    provider: this.providers[0],
+    company: this.companies[0],
+    esgFactorScores: this.SectorCompanyParameterBaseData_abbott.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_abbott.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_abbott.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_abbott.g_sector_region_score,
+  }
+  private esgData_novartis: esgInputData = {
+    sector: this.sectors[0],
+    provider: this.providers[0],
+    company: this.companies[1],
+    esgFactorScores: this.SectorCompanyParameterBaseData_novartis.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_novartis.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_novartis.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_novartis.g_sector_region_score,
+  }
+  private esgData_cipla: esgInputData = {
+    sector: this.sectors[0],
+    provider: this.providers[0],
+    company: this.companies[2],
+    esgFactorScores: this.SectorCompanyParameterBaseData_cipla.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_cipla.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_cipla.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_cipla.g_sector_region_score,
+  }
+  private esgData_apple: esgInputData = {
+    sector: this.sectors[1],
+    provider: this.providers[0],
+    company: this.companies[3],
+    esgFactorScores: this.SectorCompanyParameterBaseData_apple.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_apple.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_apple.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_apple.g_sector_region_score,
+  }
+  private esgData_accenture: esgInputData = {
+    sector: this.sectors[1],
+    provider: this.providers[0],
+    company: this.companies[4],
+    esgFactorScores: this.SectorCompanyParameterBaseData_accenture.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_accenture.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_accenture.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_accenture.g_sector_region_score,
+  }
+  private esgData_amazon: esgInputData = {
+    sector: this.sectors[1],
+    provider: this.providers[0],
+    company: this.companies[5],
+    esgFactorScores: this.SectorCompanyParameterBaseData_amazon.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_amazon.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_amazon.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_amazon.g_sector_region_score,
+  }
+  private esgData_tesla: esgInputData = {
+    sector: this.sectors[4],
+    provider: this.providers[0],
+    company: this.companies[6],
+    esgFactorScores: this.SectorCompanyParameterBaseData_tesla.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_tesla.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_tesla.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_tesla.g_sector_region_score,
+  }
+  private esgData_ford: esgInputData = {
+    sector: this.sectors[4],
+    provider: this.providers[0],
+    company: this.companies[7],
+    esgFactorScores: this.SectorCompanyParameterBaseData_ford.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_ford.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_ford.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_ford.g_sector_region_score,
+  }
+  private esgData_cocacola: esgInputData = {
+    sector: this.sectors[4],
+    provider: this.providers[0],
+    company: this.companies[8],
+    esgFactorScores: this.SectorCompanyParameterBaseData_cocacola.parametersRating,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+    e_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.g_sector_region_score,
+  }
+  private esgData10: esgInputData = {
+    sector: this.sectors[3],
+    provider: this.providers[0],
+    company: this.companies[9],
+    esgFactorScores: this.SectorCompanyParameterBaseData_novartis.parametersRating,
+    e_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.g_sector_region_score,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+  }
+  private esgData11: esgInputData = {
+    sector: this.sectors[3],
+    provider: this.providers[0],
+    company: this.companies[10],
+    esgFactorScores: this.SectorCompanyParameterBaseData_novartis.parametersRating,
+    e_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.g_sector_region_score,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+  }
+  private esgData12: esgInputData = {
+    sector: this.sectors[3],
+    provider: this.providers[0],
+    company: this.companies[11],
+    esgFactorScores: this.SectorCompanyParameterBaseData_novartis.parametersRating,
+    e_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.e_sector_region_score,
+    s_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.s_sector_region_score,
+    g_sector_region_score: this.SectorCompanyParameterBaseData_cocacola.g_sector_region_score,
+    goalBasedScore: {
+      goal1: 68,
+      goal2: 69,
+      goal3: 74,
+      goal4: 76,
+      goal5: 80,
+      goal6: 85,
+      goal7: 92,
+      goal8: 96,
+      goal9: 45,
+      goal10: 56,
+      goal11: 61,
+      goal12: 81,
+      goal13: 82,
+      goal14: 83,
+      goal15: 84,
+      goal16: 85,
+      goal17: 86
+    },
+    reportingDate: null,
+    reportingPeriod: '2020 Q3',
+    financialYear: 'FY20-21',
+    financialQuarter: 'Q3',
+  }
+  private esgData: esgInputData[] = [this.esgData_abbott,
+  this.esgData_novartis, this.esgData_cipla, this.esgData_apple,
+  this.esgData_accenture, this.esgData_amazon, this.esgData_tesla,
+  this.esgData_ford, this.esgData_cocacola, this.esgData10, this.esgData11, this.esgData12];
+
   public getSectorCompanyParameterBaseDataByName(name: string): SectorCompanyParameterBaseData {
     switch (name.toLowerCase()) {
       case "abbott":
@@ -1297,7 +1026,7 @@ export class EsgDataService {
     this.SectorCompanyParameterBaseData_amazon,
     this.SectorCompanyParameterBaseData_tesla,
     this.SectorCompanyParameterBaseData_ford,
-      this.SectorCompanyParameterBaseData_cocacola
+    this.SectorCompanyParameterBaseData_cocacola
     ]
   }
 
@@ -1373,22 +1102,72 @@ export class EsgDataService {
   public transformInputDataToDisplayModel(input: SectorCompanyParameterBaseData): esgInputData {
     let displayModel: esgInputData = new esgInputData();
     displayModel.company = input.company;
+    displayModel.e_sector_region_score = input.e_sector_region_score;
+    displayModel.s_sector_region_score = input.s_sector_region_score;
+    displayModel.g_sector_region_score = input.g_sector_region_score;
     displayModel.sector = input.sector;
     displayModel.financialYear = '';
     displayModel.financialQuarter = '';
     displayModel.reportingPeriod = '';
     displayModel.reportingDate = null;
     displayModel.provider = new provider();
-    ////displayModel.esgFactorScores = extractEsgFactorSCore(input);
-    ////displayModel.goalBasedScore = extractGoalBasedScore(input);
+    displayModel.esgFactorScores = input.parametersRating;
+    displayModel.goalBasedScore = this.extractGoalBasedScore(input);
     return displayModel;
   }
 
-  private extractEsgFactorSCore(input: SectorCompanyParameterBaseData): any {
-
+  private extractGoalBasedScore(input: SectorCompanyParameterBaseData): goalBasedScore {
+    let gbs: goalBasedScore = new goalBasedScore();
+    gbs.goal1 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[0].sdgGoalId);
+    gbs.goal2 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[1].sdgGoalId);
+    gbs.goal3 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[2].sdgGoalId);
+    gbs.goal4 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[3].sdgGoalId);
+    gbs.goal5 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[4].sdgGoalId);
+    gbs.goal6 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[5].sdgGoalId);
+    gbs.goal7 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[6].sdgGoalId);
+    gbs.goal8 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[7].sdgGoalId);
+    gbs.goal9 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[8].sdgGoalId);
+    gbs.goal10 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[9].sdgGoalId);
+    gbs.goal11 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[10].sdgGoalId);
+    gbs.goal12 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[11].sdgGoalId);
+    gbs.goal13 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[12].sdgGoalId);
+    gbs.goal14 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[13].sdgGoalId);
+    gbs.goal15 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[14].sdgGoalId);
+    gbs.goal16 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[15].sdgGoalId);
+    gbs.goal17 = this.getGoalBasedScoreFromRatings(input.parametersRating, this.sdgGoals[16].sdgGoalId);
+    return gbs;
   }
 
-  private extractGoalBasedScore(input: SectorCompanyParameterBaseData): any {
+  private getGoalBasedScoreFromRatings(ratings: ParametersRating[], goalId: number): number {
+    let score: number = 0;
+    // expecting length=3 at max if present.
+    let goals = ratings.filter(x => x.sectorGoalWeightage.sdg_Goal_Description.sdg_Goal.sdgGoalId == goalId);
+    if (goals.length > 0) {
+      goals.forEach(y => {
+        score = score + ((y.esgScore.esgScoreValue * y.sectorGoalWeightage.weightage)/100); // as per excel
+      });
+    }
+    if (isNaN(score))
+      return 0;
+    return (score) / (goals.length);
+  }
 
+  public getESGScoreFromRatingsByCategoryId(data: esgInputData, catId: number): number {
+    let score: number = 0;
+    // filter parameter rating array by category(E,S,G).
+    let goals = data.esgFactorScores.filter(x => x.sectorGoalWeightage.sdg_Goal_Description.sdg_Goal.esg_Category.esgCategoryId == catId);
+    // Hard-coded in text box.
+    let inputScore = catId == 1 ? (data.e_sector_region_score[0] + data.e_sector_region_score[1] + data.e_sector_region_score[2]) / 3 :
+                     catId == 2 ? (data.s_sector_region_score[0] + data.s_sector_region_score[1] + data.s_sector_region_score[2]) / 3 :
+                                  (data.g_sector_region_score[0] + data.g_sector_region_score[1] + data.g_sector_region_score[2]) / 3;
+    if (goals.length > 0) {
+      goals.forEach(y => {
+        // no need to consider weigtage for E,S,G specific score. Required in Goal Based score.
+        // score = score + (y.esgScore.esgScoreValue * y.sectorGoalWeightage.weightage);
+        score = score + y.esgScore.esgScoreValue;
+      });      
+    }
+    // goals.length will be for 3 companies here, so we divide total length by 3.
+    return (score / (goals.length/3)) + inputScore;
   }
 }

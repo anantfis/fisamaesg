@@ -1,129 +1,60 @@
-<mat-card class="company-esg-score-content">
-  <mat-card-header>
+<mat-card class="company-esg-score-content">  
+  <mat-card-header fxLayoutAlign="start center" style="background-color:cadetblue;padding-top:10px;">
     <mat-card-title>
-      Component Scores
+      <span style="color:white; font-size:20px; font-weight:bold;">Component / Parameter Scores</span>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
-    <mat-card>      
+    <mat-card>
       <span class="factor">ENVIRONMENTAL PERFORMANCE</span>
       <table>
         <tr>
           <th></th>
           <th>Parameter</th>
           <th>Score</th>
+          <th>Risk</th>
         </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.environmentalScore.energyAndClimateChange)}}" /></td>
-          <td>Energy And Climate Change</td>
-          <td>{{companyData.esgFactorScores.environmentalScore.energyAndClimateChange}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.environmentalScore.environmentPolicyAndReporting)}}" /></td>
-          <td>Environment Policy And Reporting</td>
-          <td>{{companyData.esgFactorScores.environmentalScore.environmentPolicyAndReporting}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.environmentalScore.resourceManagement)}}" /></td>
-          <td>Resource Management</td>
-          <td>{{companyData.esgFactorScores.environmentalScore.resourceManagement}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.environmentalScore.greenhouseGases)}}" /></td>
-          <td>Greenhouse Gases</td>
-          <td>{{companyData.esgFactorScores.environmentalScore.greenhouseGases}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.environmentalScore.landUsage)}}" /></td>
-          <td>Land Usage</td>
-          <td>{{companyData.esgFactorScores.environmentalScore.landUsage}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.environmentalScore.wasteManagement)}}" /></td>
-          <td>Waste Management</td>
-          <td>{{companyData.esgFactorScores.environmentalScore.wasteManagement}}/100</td>
+        <tr *ngFor="let item of availableFactorRatings(1)">
+          <td><img src="{{pickColor(item.score)}}" /></td>
+          <td>{{item.parameter}}</td>
+          <td>{{item.score | number : '1.0-2'}}/{{item.total}}</td>
+          <td>{{calculateRisk(item.score)}}</td>
         </tr>
       </table>
     </mat-card>
 
-    <mat-card>      
+    <mat-card>
       <span class="factor">SOCIAL PERFORMANCE</span>
       <table>
         <tr>
           <th></th>
           <th>Parameter</th>
           <th>Score</th>
+          <th>Risk</th>
         </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.socialScore.safeManagement)}}" /></td>
-          <td>Safe Management</td>
-          <td>{{companyData.esgFactorScores.socialScore.safeManagement}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.socialScore.workforceDiversity)}}" /></td>
-          <td>Workforce Diversity</td>
-          <td>{{companyData.esgFactorScores.socialScore.workforceDiversity}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.socialScore.customerEngagement)}}" /></td>
-          <td>Customer Engagement</td>
-          <td>{{companyData.esgFactorScores.socialScore.customerEngagement}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.socialScore.communities)}}" /></td>
-          <td>Communities</td>
-          <td>{{companyData.esgFactorScores.socialScore.communities}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.socialScore.humanRightAndSupplyChain)}}" /></td>
-          <td>Human Right And Supply Chain</td>
-          <td>{{companyData.esgFactorScores.socialScore.humanRightAndSupplyChain}}/100</td>
+        <tr *ngFor="let item of availableFactorRatings(2)">
+          <td><img src="{{pickColor(item.score)}}" /></td>
+          <td>{{item.parameter}}</td>
+          <td>{{item.score | number : '1.0-2'}}/{{item.total}}</td>
+          <td>{{calculateRisk(item.score)}}</td>
         </tr>
       </table>
     </mat-card>
 
-    <mat-card>      
+    <mat-card>
       <span class="factor">GOVERNANCE PERFORMANCE</span>
       <table>
         <tr>
           <th></th>
           <th>Parameter</th>
           <th>Score</th>
+          <th>Risk</th>
         </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.governanceScore.board)}}" /></td>
-          <td>Board</td>
-          <td>{{companyData.esgFactorScores.governanceScore.board}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.governanceScore.transparencyAndReporting)}}" /></td>
-          <td>Transparency And Reporting</td>
-          <td>{{companyData.esgFactorScores.governanceScore.transparencyAndReporting}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.governanceScore.leadershipEthics)}}" /></td>
-          <td>Leadership Ethics</td>
-          <td>{{companyData.esgFactorScores.governanceScore.leadershipEthics}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.governanceScore.structureAndOversights)}}" /></td>
-          <td>Structure And Oversights</td>
-          <td>{{companyData.esgFactorScores.governanceScore.structureAndOversights}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.governanceScore.codeAndValues)}}" /></td>
-          <td>Code And Values</td>
-          <td>{{companyData.esgFactorScores.governanceScore.codeAndValues}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.governanceScore.cyberrisksAndSystems)}}" /></td>
-          <td>Cyber Risks And Systems</td>
-          <td>{{companyData.esgFactorScores.governanceScore.cyberrisksAndSystems}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData.esgFactorScores.governanceScore.generalFactors)}}" /></td>
-          <td>General Factors</td>
-          <td>{{companyData.esgFactorScores.governanceScore.generalFactors}}/100</td>
+        <tr *ngFor="let item of availableFactorRatings(3)">
+          <td><img src="{{pickColor(item.score)}}" /></td>
+          <td>{{item.parameter}}</td>
+          <td>{{item.score | number : '1.0-2'}}/{{item.total}}</td>
+          <td>{{calculateRisk(item.score)}}</td>
         </tr>
       </table>
     </mat-card>

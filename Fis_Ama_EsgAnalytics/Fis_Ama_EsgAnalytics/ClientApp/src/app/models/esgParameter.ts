@@ -5,3 +5,9 @@ export class esgParameter {
   esgParameterName: string;
   sdg_Goal_Description: sdgGoalDescription;
 }
+
+export class ParamRating {
+  parameter: string;
+  score: number;
+  total: number;
+}

@@ -1,48 +1,25 @@
 <mat-card class="compare-esg-score-content">
-  <mat-card-header>
+  <mat-card-header fxLayoutAlign="start center" style="background-color: cadetblue;">
     <mat-card-title>
-      Component Scores
+      <span style="color:white; font-size:20px; font-weight:bold;">Applicable Goal Component Scores</span>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
     <mat-card>
-      <span class="factor">Goals</span>
-      <table>
-        <tr>          
-          <th>Goal 1</th>
+      <span class="factor">Goals : Description</span>
+      <table *ngIf="companyData1.sector.sectorId == 1">
+        <tr *ngFor="let goal of pharmaGoals">
+          <th>{{goal.sdg_Goal_Description.sdg_Goal.sdgGoalName}} : {{goal.sdg_Goal_Description.sdgGoalDescriptionName}}</th>
         </tr>
-        <tr>          
-          <th>Goal 2</th>
+      </table>
+      <table *ngIf="companyData1.sector.sectorId == 2">
+        <tr *ngFor="let goal of softwareGoals">
+          <th>{{goal.sdg_Goal_Description.sdg_Goal.sdgGoalName}} : {{goal.sdg_Goal_Description.sdgGoalDescriptionName}}</th>
         </tr>
-        <tr>          
-          <th>Goal 3</th>
-        </tr>
-        <tr>         
-          <th>Goal 4</th>
-        </tr>
-        <tr>          
-          <th>Goal 5</th>
-        </tr>
-        <tr>          
-          <th>Goal 6</th>
-        </tr>
-        <tr>          
-          <th>Goal 7</th>
-        </tr>
-        <tr>          
-          <th>Goal 8</th>
-        </tr>
-        <tr>          
-          <th>Goal 9</th>
-        </tr>
-        <tr>          
-          <th>Goal 10</th>
-        </tr>
-        <tr>          
-          <th>Goal 11</th>
-        </tr>
-        <tr>         
-          <th>Goal 12</th>
+      </table>
+      <table *ngIf="companyData1.sector.sectorId == 5">
+        <tr *ngFor="let goal of manufacturingGoals">
+          <th>{{goal.sdg_Goal_Description.sdg_Goal.sdgGoalName}} : {{goal.sdg_Goal_Description.sdgGoalDescriptionName}}</th>
         </tr>
       </table>
     </mat-card>
@@ -50,197 +27,33 @@
     <mat-card>
       <span class="factor">{{companyData1.company.companyName}}</span>
       <table>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal1)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal1)}}</td>
-          <td>{{companyData1.goalBasedScore.goal1}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal2)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal2)}}</td>
-          <td>{{companyData1.goalBasedScore.goal2}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal3)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal3)}}</td>
-          <td>{{companyData1.goalBasedScore.goal3}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal4)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal4)}}</td>
-          <td>{{companyData1.goalBasedScore.goal4}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal5)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal5)}}</td>
-          <td>{{companyData1.goalBasedScore.goal5}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal6)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal6)}}</td>
-          <td>{{companyData1.goalBasedScore.goal6}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal7)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal7)}}</td>
-          <td>{{companyData1.goalBasedScore.goal7}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal8)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal8)}}</td>
-          <td>{{companyData1.goalBasedScore.goal8}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal9)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal9)}}</td>
-          <td>{{companyData1.goalBasedScore.goal9}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal10)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal10)}}</td>
-          <td>{{companyData1.goalBasedScore.goal10}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal11)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal11)}}</td>
-          <td>{{companyData1.goalBasedScore.goal11}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData1.goalBasedScore.goal12)}}" /></td>
-          <td>{{pickRating(companyData1.goalBasedScore.goal12)}}</td>
-          <td>{{companyData1.goalBasedScore.goal12}}/100</td>
+        <tr *ngFor="let rating of company1ParamRating">
+          <td><img src="{{pickColor(rating.score)}}" /></td>
+          <td>{{pickRating(rating.score)}}</td>
+          <td>{{rating.score | number : '1.0-2'}}</td>
+          <!--<td>{{rating.score | number : '1.0-2'}}/{{rating.total}}</td>-->
         </tr>
       </table>
     </mat-card>
-
     <mat-card>
       <span class="factor">{{companyData2.company.companyName}}</span>
       <table>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal1)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal1)}}</td>
-          <td>{{companyData2.goalBasedScore.goal1}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal2)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal2)}}</td>
-          <td>{{companyData2.goalBasedScore.goal2}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal3)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal3)}}</td>
-          <td>{{companyData2.goalBasedScore.goal3}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal4)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal4)}}</td>
-          <td>{{companyData2.goalBasedScore.goal4}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal5)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal5)}}</td>
-          <td>{{companyData2.goalBasedScore.goal5}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal6)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal6)}}</td>
-          <td>{{companyData2.goalBasedScore.goal6}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal7)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal7)}}</td>
-          <td>{{companyData2.goalBasedScore.goal7}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal8)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal8)}}</td>
-          <td>{{companyData2.goalBasedScore.goal8}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal9)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal9)}}</td>
-          <td>{{companyData2.goalBasedScore.goal9}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal10)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal10)}}</td>
-          <td>{{companyData2.goalBasedScore.goal10}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal11)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal11)}}</td>
-          <td>{{companyData2.goalBasedScore.goal11}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData2.goalBasedScore.goal12)}}" /></td>
-          <td>{{pickRating(companyData2.goalBasedScore.goal12)}}</td>
-          <td>{{companyData2.goalBasedScore.goal12}}/100</td>
+        <tr *ngFor="let rating of company2ParamRating">
+          <td><img src="{{pickColor(rating.score)}}" /></td>
+          <td>{{pickRating(rating.score)}}</td>
+          <td>{{rating.score | number : '1.0-2'}}</td>
+          <!--<td>{{rating.score | number : '1.0-2'}}/{{rating.total}}</td>-->
         </tr>
       </table>
     </mat-card>
-
     <mat-card>
       <span class="factor">{{companyData3.company.companyName}}</span>
       <table>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal1)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal1)}}</td>
-          <td>{{companyData3.goalBasedScore.goal1}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal2)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal2)}}</td>
-          <td>{{companyData3.goalBasedScore.goal2}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal3)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal3)}}</td>
-          <td>{{companyData3.goalBasedScore.goal3}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal4)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal4)}}</td>
-          <td>{{companyData3.goalBasedScore.goal4}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal5)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal5)}}</td>
-          <td>{{companyData3.goalBasedScore.goal5}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal6)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal6)}}</td>
-          <td>{{companyData3.goalBasedScore.goal6}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal7)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal7)}}</td>
-          <td>{{companyData3.goalBasedScore.goal7}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal8)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal8)}}</td>
-          <td>{{companyData3.goalBasedScore.goal8}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal9)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal9)}}</td>
-          <td>{{companyData3.goalBasedScore.goal9}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal10)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal10)}}</td>
-          <td>{{companyData3.goalBasedScore.goal10}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal11)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal11)}}</td>
-          <td>{{companyData3.goalBasedScore.goal11}}/100</td>
-        </tr>
-        <tr>
-          <td><img src="{{pickColor(companyData3.goalBasedScore.goal12)}}" /></td>
-          <td>{{pickRating(companyData3.goalBasedScore.goal12)}}</td>
-          <td>{{companyData3.goalBasedScore.goal12}}/100</td>
+        <tr *ngFor="let rating of company3ParamRating">
+          <td><img src="{{pickColor(rating.score)}}" /></td>
+          <td>{{pickRating(rating.score)}}</td>
+          <td>{{rating.score | number : '1.0-2'}}</td>
+          <!--<td>{{rating.score | number : '1.0-2'}}/{{rating.total}}</td>-->
         </tr>
       </table>
     </mat-card>

@@ -3,7 +3,6 @@ import { company } from '../models/company';
 import { EsgDataService } from '../service/esg-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommunicationService } from '../service/communication.service';
-import { sector } from '../models/sector';
 
 @Component({
   selector: 'app-company-esg-info',

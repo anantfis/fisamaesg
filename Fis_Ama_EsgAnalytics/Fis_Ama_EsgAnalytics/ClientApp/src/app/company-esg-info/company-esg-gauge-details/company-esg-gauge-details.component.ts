@@ -4,6 +4,7 @@ import { gaugeParameters } from '../../models/gaugeParameters';
 import { EsgDataService } from '../../service/esg-data.service';
 import { esgInputData } from '../../models/esgInputData';
 import { CommunicationService } from '../../service/communication.service';
+import { LocalStorageService } from '../../service/local-storage.service';
 
 @Component({
   selector: 'app-company-esg-gauge-details',
@@ -15,7 +16,8 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
   companySelected: company;
 
   constructor(private esgDataService: EsgDataService,
-    private communicationService: CommunicationService) { }
+    private communicationService: CommunicationService,
+  private localStorageService: LocalStorageService) { }
 
   netScoreGauge: gaugeParameters;
   e_ScoreGauge: gaugeParameters;
@@ -42,7 +44,9 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
 
   setupData(): void {
     this.companySelected = this.esgDataService.getAllCompanies().filter(x => x.companyId === this.companySelected.companyId)[0];
-    this.companyData = this.esgDataService.getAllEsgData().filter(y => y.company.companyId === this.companySelected.companyId)[0];
+    this.companyData = this.esgDataService.transformInputDataToDisplayModel(
+      this.localStorageService.getCompanyDataFromLocalStorageById(
+        this.companySelected.companyId));
     this.netScoreGauge = {
       canvasWidth: this.canvaswidth,
       needleValue: this.calculateNetAverage(),
@@ -116,31 +120,15 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
   }
 
   calculateEnvScoreAverage(): number {
-    return (this.companyData.esgFactorScores.environmentalScore.energyAndClimateChange +
-      this.companyData.esgFactorScores.environmentalScore.environmentPolicyAndReporting +
-      this.companyData.esgFactorScores.environmentalScore.landUsage +
-      this.companyData.esgFactorScores.environmentalScore.greenhouseGases +
-      this.companyData.esgFactorScores.environmentalScore.resourceManagement +
-      this.companyData.esgFactorScores.environmentalScore.wasteManagement +
-      this.companyData.esgFactorScores.environmentalScore.waterResources) / 7;
+    return this.esgDataService.getESGScoreFromRatingsByCategoryId(this.companyData, 1);
   }
 
   calculateSocialScoreAverage(): number {
-    return (this.companyData.esgFactorScores.socialScore.communities +
-      this.companyData.esgFactorScores.socialScore.customerEngagement +
-      this.companyData.esgFactorScores.socialScore.humanRightAndSupplyChain +
-      this.companyData.esgFactorScores.socialScore.safeManagement +
-      this.companyData.esgFactorScores.socialScore.workforceDiversity) / 5;
+    return this.esgDataService.getESGScoreFromRatingsByCategoryId(this.companyData, 2);
   }
 
   calculateGovScoreAverage(): number {
-    return (this.companyData.esgFactorScores.governanceScore.board +
-      this.companyData.esgFactorScores.governanceScore.codeAndValues +
-      this.companyData.esgFactorScores.governanceScore.cyberrisksAndSystems +
-      this.companyData.esgFactorScores.governanceScore.generalFactors +
-      this.companyData.esgFactorScores.governanceScore.leadershipEthics +
-      this.companyData.esgFactorScores.governanceScore.structureAndOversights +
-      this.companyData.esgFactorScores.governanceScore.transparencyAndReporting) / 7;
+    return this.esgDataService.getESGScoreFromRatingsByCategoryId(this.companyData, 3);
   }
 
   ngOnDestroy() {

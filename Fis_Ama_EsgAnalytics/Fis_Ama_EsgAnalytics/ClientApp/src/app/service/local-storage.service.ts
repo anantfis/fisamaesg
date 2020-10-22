@@ -51,6 +51,48 @@ export class LocalStorageService {
     }
   }
 
+  public getCompanyDataFromLocalStorageById(Id: number): SectorCompanyParameterBaseData {
+    var data: SectorCompanyParameterBaseData;
+    switch (Id) {
+      case 1:
+        data = JSON.parse(localStorage.getItem('companyData_abbott')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+      case 2:
+        data = JSON.parse(localStorage.getItem('companyData_novartis')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+      case 3:
+        data = JSON.parse(localStorage.getItem('companyData_cipla')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+      case 4:
+        data = JSON.parse(localStorage.getItem('companyData_apple')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+      case 5:
+        data = JSON.parse(localStorage.getItem('companyData_accenture')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+      case 6:
+        data = JSON.parse(localStorage.getItem('companyData_amazon')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+      case 8:
+        data = JSON.parse(localStorage.getItem('companyData_ford')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+      case 7:
+        data = JSON.parse(localStorage.getItem('companyData_tesla')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+      case 9:
+        data = JSON.parse(localStorage.getItem('companyData_cocacola')) as SectorCompanyParameterBaseData;
+        return data;
+        break;
+    }
+  }
+
   public getAllCompanyDataFromLocalStorage(): SectorCompanyParameterBaseData[] {
     var data: SectorCompanyParameterBaseData[]=[];
     data.push(JSON.parse(localStorage.getItem('companyData_abbott')) as SectorCompanyParameterBaseData);
