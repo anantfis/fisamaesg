@@ -88,7 +88,11 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
     if (!isNaN(firmData.goalBasedScore.goal17))
       sum = sum + firmData.goalBasedScore.goal17;
     //return (sum / goals);
-    return sum*10;
+    //return sum*10;
+    if (sum * 10 > 100)
+      return 100;
+    else
+      return sum * 10;
   }
 
   setData(x: number, y: number, z: number) {
@@ -116,7 +120,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: score1,
       centralLabel: '',
-      name: this.companyInput1.companyName + ' : ' + score1.toString().substring(0, 2) + '/100',
+      name: this.companyInput1.companyName + ' : ' + score1.toString().substring(0, 4) + '/100',
       bottomLabel: score1 >= 75 ? 'Low Risk' : score1 <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -132,7 +136,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: score2,
       centralLabel: '',
-      name: this.companyInput2.companyName + ' : ' + score2.toString().substring(0, 2) + '/100',
+      name: this.companyInput2.companyName + ' : ' + score2.toString().substring(0, 4) + '/100',
       bottomLabel: score2 >= 75 ? 'Low Risk' : score2 <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -148,7 +152,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: score3,
       centralLabel: '',
-      name: this.companyInput3.companyName + ' : ' + score3.toString().substring(0, 2) + '/100',
+      name: this.companyInput3.companyName + ' : ' + score3.toString().substring(0, 4) + '/100',
       bottomLabel: score3 >= 75 ? 'Low Risk' : score3 <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
