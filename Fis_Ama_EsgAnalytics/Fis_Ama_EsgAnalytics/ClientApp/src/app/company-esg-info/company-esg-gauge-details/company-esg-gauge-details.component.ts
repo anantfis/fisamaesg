@@ -48,10 +48,10 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       this.localStorageService.getCompanyDataFromLocalStorageById(
         this.companySelected.companyId));
     this.netScoreGauge = {
-      canvasWidth: this.canvaswidth,
+      canvasWidth: this.canvaswidth + 70,
       needleValue: this.calculateNetAverage(),
       centralLabel: '',
-      name: 'ESG Score :' +  this.calculateNetAverage().toString().substring(0, 2) + '/100',
+      name: 'FIS ESG Index :' +  this.calculateNetAverage().toString().substring(0, 2) + '/100',
       bottomLabel: this.calculateNetAverage() >= 75 ? 'Low Risk' : this.calculateNetAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,

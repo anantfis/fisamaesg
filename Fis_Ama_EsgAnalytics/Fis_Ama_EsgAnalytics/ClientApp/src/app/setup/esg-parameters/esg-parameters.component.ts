@@ -9,7 +9,7 @@ import { esgParameter } from '../../models/esgParameter';
 })
 export class EsgParametersComponent implements OnInit {
   allParameters: esgParameter[] = [];
-  headElements: string[]=['Id', 'Parameters', 'Description', 'Category', 'SDG Goal']
+  headElements: string[]=['Id', 'Parameters', 'SDG Goal Description', 'Category', 'SDG Goal']
   constructor(private esgDataService: EsgDataService) { }
 
   ngOnInit() {

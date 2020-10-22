@@ -24,7 +24,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
   companyData1: esgInputData;
   companyData2: esgInputData;
   companyData3: esgInputData;
-  canvaswidth: number = 275;
+  canvaswidth: number = 300;
   needleupdatespeed: number = 2000;
   companyChangeSubs: any;
   ngOnInit() {
