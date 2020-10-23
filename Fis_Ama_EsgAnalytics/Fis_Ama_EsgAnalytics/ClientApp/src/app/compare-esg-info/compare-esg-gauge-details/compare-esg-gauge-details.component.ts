@@ -120,7 +120,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: score1,
       centralLabel: '',
-      name: this.companyInput1.companyName + ' : ' + score1.toString().substring(0, 4) + '/100',
+      name: this.companyInput1.companyName + ' : ' + score1.toString().substring(0, 4),
       bottomLabel: score1 >= 75 ? 'Low Risk' : score1 <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -136,7 +136,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: score2,
       centralLabel: '',
-      name: this.companyInput2.companyName + ' : ' + score2.toString().substring(0, 4) + '/100',
+      name: this.companyInput2.companyName + ' : ' + score2.toString().substring(0, 4),
       bottomLabel: score2 >= 75 ? 'Low Risk' : score2 <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -152,7 +152,7 @@ export class CompareEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: score3,
       centralLabel: '',
-      name: this.companyInput3.companyName + ' : ' + score3.toString().substring(0, 4) + '/100',
+      name: this.companyInput3.companyName + ' : ' + score3.toString().substring(0, 4),
       bottomLabel: score3 >= 75 ? 'Low Risk' : score3 <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,

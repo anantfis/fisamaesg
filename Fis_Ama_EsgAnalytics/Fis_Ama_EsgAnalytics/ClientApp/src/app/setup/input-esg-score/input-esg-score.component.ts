@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { LocalStorageService } from '../../service/local-storage.service';
 import { SectorCompanyParameterBaseData } from '../../models/sector-company-basedata';
 import { MatDialog, MatSidenav } from '@angular/material';
@@ -9,7 +9,7 @@ import { CompanyDataEditComponent } from '../company-data-edit/company-data-edit
   templateUrl: './input-esg-score.component.html',
   styleUrls: ['./input-esg-score.component.css']
 })
-export class InputEsgScoreComponent implements OnInit {
+export class InputEsgScoreComponent implements OnInit, OnChanges {
   @ViewChild("sidenavDetails", { static:false }) sidenavDetails: MatSidenav;
   constructor(private localStorageService: LocalStorageService, public dialog: MatDialog) { }
   savedData: SectorCompanyParameterBaseData[];
@@ -38,6 +38,10 @@ export class InputEsgScoreComponent implements OnInit {
 
   onSaveData(isSaved: boolean) {
     this.sidenavDetails.close();
+    this.savedData = this.localStorageService.getAllCompanyDataFromLocalStorage();
+  }
+
+  ngOnChanges() {
     this.savedData = this.localStorageService.getAllCompanyDataFromLocalStorage();
   }
 }

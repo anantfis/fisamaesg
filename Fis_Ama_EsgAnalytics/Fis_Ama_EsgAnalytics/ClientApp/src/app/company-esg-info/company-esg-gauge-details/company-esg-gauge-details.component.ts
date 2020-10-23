@@ -51,7 +51,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth + 70,
       needleValue: this.calculateNetAverage(),
       centralLabel: '',
-      name: 'FIS ESG Index :' +  this.calculateNetAverage().toString().substring(0, 4) + '/100',
+      name: 'FIS ESG Index :' +  this.calculateNetAverage().toString().substring(0, 4),
       bottomLabel: this.calculateNetAverage() >= 75 ? 'Low Risk' : this.calculateNetAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -67,7 +67,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: this.calculateEnvScoreAverage(),
       centralLabel: '',
-      name: 'Environmental :' + this.calculateEnvScoreAverage().toString().substring(0, 4) + '/100',
+      name: 'Environmental :' + this.calculateEnvScoreAverage().toString().substring(0, 4),
       bottomLabel: this.calculateEnvScoreAverage() >= 75 ? 'Low Risk' : this.calculateEnvScoreAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -83,7 +83,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: this.calculateSocialScoreAverage(),
       centralLabel: '',
-      name: 'Social : ' + this.calculateSocialScoreAverage().toString().substring(0, 4) + '/100',
+      name: 'Social : ' + this.calculateSocialScoreAverage().toString().substring(0, 4),
       bottomLabel: this.calculateSocialScoreAverage() >= 75 ? 'Low Risk' : this.calculateSocialScoreAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
@@ -99,7 +99,7 @@ export class CompanyEsgGaugeDetailsComponent implements OnInit {
       canvasWidth: this.canvaswidth,
       needleValue: this.calculateGovScoreAverage(),
       centralLabel: '',
-      name: 'Governance : ' + this.calculateGovScoreAverage().toString().substring(0, 4) + '/100',
+      name: 'Governance : ' + this.calculateGovScoreAverage().toString().substring(0, 4),
       bottomLabel: this.calculateGovScoreAverage() >= 75 ? 'Low Risk' : this.calculateGovScoreAverage() <= 35 ? 'High Risk' : 'Medium Risk',
       options: {
         hasNeedle: true,
