@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { EsgDataService } from '../../service/esg-data.service';
 import { esgScore } from '../../models/score';
 
@@ -21,7 +21,12 @@ export class RatingScoreDropDownComponent implements OnInit {
   }
 
   onSelectionChange() {
-    this.ratingValue = this.ratingSelected;
-    this.valueChanged.emit(this.ratingValue);
+    //this.ratingValue = this.ratingSelected;
+    this.ratingSelected = this.ratingsList.find(a => a.esgScoreValue == this.ratingValue.esgScoreValue);
+    this.valueChanged.emit(this.ratingSelected);
   }
+
+  //ngOnChanges() {
+  //  this.ratingSelected = this.ratingsList.find(a => a.esgScoreId == this.ratingValue.esgScoreId);
+  //}
 }

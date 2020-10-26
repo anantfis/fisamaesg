@@ -1,7 +1,7 @@
 <mat-form-field>
   <mat-label>Rating</mat-label>
-  <mat-select [(ngModel)]="ratingSelected" (selectionChange)="onSelectionChange()">
-    <mat-option *ngFor="let rating of ratingsList" [value]="rating">
+  <mat-select *ngIf="ratingValue" [(ngModel)]="ratingValue.esgScoreValue" (selectionChange)="onSelectionChange()">
+    <mat-option *ngFor="let rating of ratingsList" [value]="rating.esgScoreValue">
       {{rating.esgScoreDescription}}
     </mat-option>    
   </mat-select>
